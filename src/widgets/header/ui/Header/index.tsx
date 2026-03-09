@@ -20,7 +20,7 @@ const Header = () => {
             </S.NavItem>
           ))}
           <ToggleTheme />
-          <FilledButton>로그인</FilledButton>
+          <FilledButton size="medium">로그인</FilledButton>
         </S.Nav>
       </S.Container>
     </S.Header>

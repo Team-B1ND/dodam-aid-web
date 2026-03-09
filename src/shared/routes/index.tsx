@@ -3,6 +3,7 @@ import Home from "@/pages/Home";
 import Apps from "@/pages/Apps";
 import AppsLayout from "@/layouts/AppsLayout";
 import RootLayout from "@/layouts/RootLayout";
+import RegisterApp from "@/pages/RegisterApp";
 
 const Router = () => {
   return (
@@ -12,7 +13,7 @@ const Router = () => {
           <Route index element={<Home />} />
           <Route path="apps" element={<AppsLayout />}>
             <Route index element={<Apps />} />
-            <Route path="register" element={<></>} />
+            <Route path="register" element={<RegisterApp />} />
             <Route path=":id" element={<></>} />
           </Route>
           <Route path="/teams" element={<></>} />

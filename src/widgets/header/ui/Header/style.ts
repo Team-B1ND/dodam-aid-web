@@ -12,6 +12,11 @@ export const Header = styled.header<{ $isScrolled: boolean }>`
   justify-content: center;
   box-sizing: content-box;
   border-bottom: 1px ${({ $isScrolled }) => ($isScrolled ? `solid` : `none`)} ${colors.border.disabled};
+  background-color: color-mix(
+    in srgb,
+    ${colors.background.default} 70%,
+    transparent
+  );
 `;
 
 export const Container = styled.div`
@@ -21,7 +26,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
 `;
 
 export const Nav = styled.div`
