@@ -12,8 +12,7 @@ const style = css`
     font-family: "Pretendard";
     font-weight: 200;
     font-display: swap;
-    src: url("../assets/fonts/Pretendard-ExtraLight.woff")
-      format("woff");
+    src: url("../assets/fonts/Pretendard-ExtraLight.woff") format("woff");
   }
 
   @font-face {
@@ -27,8 +26,7 @@ const style = css`
     font-family: "Pretendard";
     font-weight: 400;
     font-display: swap;
-    src: url("../assets/fonts/Pretendard-Regular.woff")
-      format("woff");
+    src: url("../assets/fonts/Pretendard-Regular.woff") format("woff");
   }
 
   @font-face {
@@ -42,8 +40,7 @@ const style = css`
     font-family: "Pretendard";
     font-weight: 600;
     font-display: swap;
-    src: url("../assets/fonts/Pretendard-SemiBold.woff")
-      format("woff");
+    src: url("../assets/fonts/Pretendard-SemiBold.woff") format("woff");
   }
 
   @font-face {
@@ -57,8 +54,7 @@ const style = css`
     font-family: "Pretendard";
     font-weight: 800;
     font-display: swap;
-    src: url("../assets/fonts/Pretendard-ExtraBold.woff")
-      format("woff");
+    src: url("../assets/fonts/Pretendard-ExtraBold.woff") format("woff");
   }
 
   @font-face {
@@ -75,6 +71,11 @@ const style = css`
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--dds-color-background-default);
+    color: var(--dds-color-text-primary);
   }
 
   a {
