@@ -22,6 +22,7 @@ const DefaultInfo = () => {
                 items={[]}
                 onSelectedItemChange={() => {}}
                 value="선택하세요"
+                customStyle={{ width: "100%" }}
               />
             </WithLabel>
           </Spacer>
