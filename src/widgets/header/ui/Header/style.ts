@@ -17,6 +17,7 @@ export const Header = styled.header<{ $isScrolled: boolean }>`
     ${colors.background.default} 70%,
     transparent
   );
+  z-index: 999;
 `;
 
 export const Container = styled.div`

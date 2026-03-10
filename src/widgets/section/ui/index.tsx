@@ -4,11 +4,12 @@ import * as S from "./style";
 interface Props {
   title: string;
   children: ReactNode;
+  titleSize?: "default" | "small"
 }
 
-const Section = ({ title, children }: Props) => {
+const Section = ({ title, children, titleSize = "default" }: Props) => {
   return (
-    <S.Section>
+    <S.Section $titleSize={titleSize}>
       <h3>{title}</h3>
       <div>
         {children}

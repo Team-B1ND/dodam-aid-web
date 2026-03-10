@@ -1,7 +1,7 @@
 import { colors, shapes, typoCss } from "@b1nd/dodam-design-system";
 import styled from "@emotion/styled";
 
-export const Section = styled.section`
+export const Section = styled.section<{ $titleSize: string }>`
   width: 100%;
   padding: 24px;
   display: flex;
@@ -11,7 +11,7 @@ export const Section = styled.section`
   background-color: ${colors.background.surface};
   border-radius: ${shapes.large};
   & > h3 {
-    ${typoCss("Heading2", "Bold")};
+    ${({ $titleSize }) => typoCss($titleSize === "default" ? "Heading2" : "Headline", "Bold")};
     color: ${colors.text.secondary};
   }
   & > div {

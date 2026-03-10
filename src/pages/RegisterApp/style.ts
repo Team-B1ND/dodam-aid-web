@@ -20,7 +20,3 @@ export const Form = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-
-export const Preview = styled.div`
-  width: 280px;
-`

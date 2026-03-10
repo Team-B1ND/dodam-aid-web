@@ -71,6 +71,7 @@ const style = css`
     font-family: "Pretendard", sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
   }
 
   body {
