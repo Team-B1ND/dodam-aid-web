@@ -7,7 +7,7 @@ const DefaultInfo = () => {
   return (
     <Section title="기본 정보">
       <Column $gap={28}>
-        <Row $gap={16}>
+        <Row $gap={16} $align="stretch">
           <Spacer>
             <FilledTextField
               placeholder="도담도담"
@@ -22,7 +22,7 @@ const DefaultInfo = () => {
                 items={[]}
                 onSelectedItemChange={() => {}}
                 value="선택하세요"
-                customStyle={{ width: "100%" }}
+                customStyle={{ width: "100%", height: "100%" }} 
               />
             </WithLabel>
           </Spacer>

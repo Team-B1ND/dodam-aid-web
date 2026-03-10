@@ -72,6 +72,7 @@ const style = css`
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
+    user-select: none;
   }
 
   body {

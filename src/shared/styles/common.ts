@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Row = styled.div<{
-  $align?: "start" | "center" | "end";
+  $align?: "start" | "center" | "end" | "stretch";
   $gap?: number;
 }>`
   width: 100%;
