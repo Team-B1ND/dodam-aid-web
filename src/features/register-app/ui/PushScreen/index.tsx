@@ -5,15 +5,13 @@ const PushScreen = () => {
   return (
     <S.Container>
       <Column $align="center" $gap={16}>
-        <Column $align="center" $gap={16}>
-          <S.Clock>
-            <S.ClockText>1</S.ClockText>
-            <S.ClockText>1</S.ClockText>
-            <S.ClockText>4</S.ClockText>
-            <S.ClockText>8</S.ClockText>
-          </S.Clock>
-          <S.DateText>3월 3일 화요일</S.DateText>
-        </Column>
+        <S.Clock>
+          <S.ClockText>1</S.ClockText>
+          <S.ClockText>1</S.ClockText>
+          <S.ClockText>4</S.ClockText>
+          <S.ClockText>8</S.ClockText>
+        </S.Clock>
+        <S.DateText>3월 3일 화요일</S.DateText>
         <S.Notification>
           <Row $align="center" $gap={8}>
             <S.Logo />
