@@ -7,7 +7,7 @@ const OtherInfo = () => {
   return (
     <Section title="기타 설정">
       <Column $gap={16}>
-        <Row $gap={8}>
+        <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
             <Checkbox selected onClick={() => {}} size="small" />
           </S.CheckBoxWrapper>
@@ -16,7 +16,7 @@ const OtherInfo = () => {
             <S.TermsSubText>생략 시, /api/user → /user</S.TermsSubText>
           </Column>
         </Row>
-        <Row $gap={8}>
+        <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
             <Checkbox selected onClick={() => {}} size="small" />
           </S.CheckBoxWrapper>

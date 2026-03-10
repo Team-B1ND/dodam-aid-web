@@ -18,22 +18,26 @@ const PushScreen = () => {
         <S.DateText>
           {month}월 {date}일 {day}
         </S.DateText>
-        <S.Notification>
-          <Row $align="center" $gap={8}>
-            <S.Logo />
-            <Spacer>
-              <Column>
-                <Row $align="center" $gap={4}>
-                  <S.AppName>도담도담</S.AppName>
-                  <S.Time>
-                    {ampm} {displayHours}:{minutes}
-                  </S.Time>
-                </Row>
-                <S.NotificationText>심야자습이 만료됐어요.</S.NotificationText>
-              </Column>
-            </Spacer>
-          </Row>
-        </S.Notification>
+        <a href="https://dodam.b1nd.com" target="_blank" style={{ width: "100%" }}>
+          <S.Notification>
+            <Row $align="center" $gap={8}>
+              <S.Logo />
+              <Spacer>
+                <Column>
+                  <Row $align="center" $gap={4}>
+                    <S.AppName>도담도담</S.AppName>
+                    <S.Time>
+                      {ampm} {displayHours}:{minutes}
+                    </S.Time>
+                  </Row>
+                  <S.NotificationText>
+                    심야자습이 만료됐어요.
+                  </S.NotificationText>
+                </Column>
+              </Spacer>
+            </Row>
+          </S.Notification>
+        </a>
       </Column>
     </S.Container>
   );
