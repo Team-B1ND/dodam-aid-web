@@ -3,6 +3,7 @@ import * as S from "./style";
 import DefaultInfo from "@/features/register-app/ui/DefaultInfo";
 import DetailInfo from "@/features/register-app/ui/DetailInfo";
 import HostingInfo from "@/features/register-app/ui/HostingInfo";
+import OtherInfo from "@/features/register-app/ui/OtherInfo";
 
 const RegisterApp = () => {
   return (
@@ -13,6 +14,7 @@ const RegisterApp = () => {
           <DefaultInfo />
           <DetailInfo />
           <HostingInfo />
+          <OtherInfo />
         </S.Form>
         <S.Preview />
       </S.Content>
