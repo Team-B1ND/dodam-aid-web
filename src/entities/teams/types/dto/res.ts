@@ -1,3 +1,3 @@
-export interface CreateTeam {
+export interface CreateTeamRes {
   teamId: string;
 }

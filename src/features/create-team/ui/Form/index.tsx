@@ -7,7 +7,8 @@ import { Column } from "@/shared/styles/common";
 import { useForm } from "@/features/create-team/hooks/useForm";
 
 const Form = () => {
-  const { form, handleTextForm, logo, handleLogo } = useForm();
+  const { form, handleTextForm, logo, handleLogo, submit, isProcessing } =
+    useForm();
 
   return (
     <Column $align="stretch" $gap={28}>
@@ -46,7 +47,9 @@ const Form = () => {
         name="githubUrl"
       />
       <Column $align="end">
-        <FilledButton size="large">팀 생성 완료</FilledButton>
+        <FilledButton size="large" onClick={submit} disabled={isProcessing}>
+          {isProcessing ? "팀 생성 중..." : "팀 생성하기"}
+        </FilledButton>
       </Column>
     </Column>
   );

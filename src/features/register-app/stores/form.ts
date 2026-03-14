@@ -1,9 +1,9 @@
-import type { CreateApp } from "@/entities/apps/types/dto/req";
+import type { CreateAppReq } from "@/entities/apps/types/dto/req";
 import { create } from "zustand";
 
 interface State {
-  form: CreateApp;
-  setForm: (form: CreateApp) => void;
+  form: CreateAppReq;
+  setForm: (form: CreateAppReq) => void;
 }
 
 export const useFormStore = create<State>((set) => ({

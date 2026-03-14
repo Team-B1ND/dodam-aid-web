@@ -1,9 +1,9 @@
-import type { CreateTeam } from "@/entities/teams/types/dto/req";
+import type { CreateTeamReq } from "@/entities/teams/types/dto/req";
 import { create } from "zustand";
 
 interface State {
-  form: CreateTeam;
-  setForm: (form: CreateTeam) => void;
+  form: CreateTeamReq;
+  setForm: (form: CreateTeamReq) => void;
 }
 
 export const useFormStore = create<State>((set) => ({

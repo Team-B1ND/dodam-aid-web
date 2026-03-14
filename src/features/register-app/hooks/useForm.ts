@@ -1,22 +1,31 @@
 import { useChecksStore } from "@/features/register-app/stores/checks";
 import { useFormStore } from "@/features/register-app/stores/form";
 import { useIconsStore } from "@/features/register-app/stores/icons";
-import type { CreateApp } from "@/entities/apps/types/dto/req";
+import type { CreateAppReq } from "@/entities/apps/types/dto/req";
 
-type ServerFields = NonNullable<CreateApp["server"]>;
-type FormFields = Omit<CreateApp, "server">;
+type ServerFields = NonNullable<CreateAppReq["server"]>;
+type FormFields = Omit<CreateAppReq, "server">;
 
 export const useForm = () => {
   const { form, setForm } = useFormStore();
   const { checks, setChecks } = useChecksStore();
   const { icons, setIcons } = useIconsStore();
 
-  const handleField = <K extends keyof FormFields>(key: K, value: FormFields[K]) => {
+  const handleField = <K extends keyof FormFields>(
+    key: K,
+    value: FormFields[K],
+  ) => {
     setForm({ ...form, [key]: value });
   };
 
-  const handleServerField = <K extends keyof ServerFields>(key: K, value: ServerFields[K]) => {
-    setForm({ ...form, server: { ...form.server, [key]: value } as ServerFields });
+  const handleServerField = <K extends keyof ServerFields>(
+    key: K,
+    value: ServerFields[K],
+  ) => {
+    setForm({
+      ...form,
+      server: { ...form.server, [key]: value } as ServerFields,
+    });
   };
 
   const handleUseServer = () => {
@@ -36,8 +45,8 @@ export const useForm = () => {
   const submit = () => {
     console.log({
       ...form,
-    })
-  }
+    });
+  };
 
   return {
     form,
@@ -48,6 +57,6 @@ export const useForm = () => {
     handleAgree,
     icons,
     handleIcons,
-    submit
+    submit,
   };
 };

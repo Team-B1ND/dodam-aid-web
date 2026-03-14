@@ -1,6 +1,6 @@
 import type { App, ServerConfig } from "@/entities/apps/types";
 
-export type CreateApp = Omit<
+export type CreateAppReq = Omit<
   App,
   "appId" | "active" | "releases" | "server"
 > & {

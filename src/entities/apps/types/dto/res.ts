@@ -1,3 +1,3 @@
-export interface CreateApp {
+export interface CreateAppReq {
   appId: string;
 }
