@@ -1,4 +1,4 @@
-import { colors, typoCss } from "@b1nd/dodam-design-system";
+import { typoCss } from "@b1nd/dodam-design-system";
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
@@ -9,9 +9,4 @@ export const Container = styled.div`
   & > h2 {
     ${typoCss("Title2", "Medium")};
   }
-`;
-
-export const Name = styled.span`
-  ${typoCss("Title2", "Medium")};
-  color: ${colors.brand.primary};
 `;

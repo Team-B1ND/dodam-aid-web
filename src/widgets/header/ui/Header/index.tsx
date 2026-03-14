@@ -3,13 +3,19 @@ import * as S from "./style";
 import { NAVIGATIONS } from "@/widgets/header/constants/nav";
 import { Link } from "react-router-dom";
 import ToggleTheme from "@/widgets/header/ui/ToggleTheme";
-import { FilledButton, useToast } from "@b1nd/dodam-design-system";
+import { useToast } from "@b1nd/dodam-design-system";
 import { useCheckScrolled } from "@/widgets/header/hooks/useCheckScrolled";
 import axios from "axios";
+import { Suspense } from "react";
+import UserIndicator from "@/features/get-my-info/ui/UserIndicator";
+import { useQueryClient } from "@tanstack/react-query";
+import { ErrorBoundary } from "react-error-boundary";
+import LoginButton from "@/widgets/header/ui/LoginButton";
 
 const Header = () => {
   const isScrolled = useCheckScrolled();
   const toast = useToast();
+  const queryClient = useQueryClient();
 
   const tempLogin = async () => {
     await axios
@@ -17,8 +23,9 @@ const Header = () => {
         username: "rxd123",
         password: "tw080401",
       })
-      .then(() => {
+      .then(async () => {
         toast.success("로그인 성공");
+        await queryClient.refetchQueries({ queryKey: ["user", "me"] });
       });
   };
 
@@ -33,9 +40,11 @@ const Header = () => {
             </S.NavItem>
           ))}
           <ToggleTheme />
-          <FilledButton size="medium" onClick={tempLogin}>
-            로그인
-          </FilledButton>
+          <ErrorBoundary fallback={<LoginButton onLogin={tempLogin} />}>
+            <Suspense fallback={<LoginButton onLogin={tempLogin} />}>
+              <UserIndicator />
+            </Suspense>
+          </ErrorBoundary>
         </S.Nav>
       </S.Container>
     </S.Header>

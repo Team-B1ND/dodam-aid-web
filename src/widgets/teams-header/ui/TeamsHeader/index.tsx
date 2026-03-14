@@ -1,14 +1,21 @@
 import { colors, FilledButton, Plus } from "@b1nd/dodam-design-system";
 import * as S from "./style";
 import { useNavigate } from "react-router-dom";
+import { Suspense } from "react";
+import Username from "@/features/get-my-info/ui/Username";
+import { ErrorBoundary } from "react-error-boundary";
 
 interface Props {
-  username?: string;
+  showUsername?: boolean;
   title: string;
   showCta?: boolean;
 }
 
-const TeamsHeader = ({ username, title, showCta = false }: Props) => {
+const TeamsHeader = ({
+  showUsername = false,
+  title,
+  showCta = false,
+}: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -18,7 +25,13 @@ const TeamsHeader = ({ username, title, showCta = false }: Props) => {
   return (
     <S.Container>
       <h2>
-        <S.Name>{username}</S.Name>
+        {showUsername && (
+          <ErrorBoundary fallback={<Username.Skeleton />}>
+            <Suspense fallback={<Username.Skeleton />}>
+              <Username />
+            </Suspense>
+          </ErrorBoundary>
+        )}
         {title}
       </h2>
       {showCta && (
