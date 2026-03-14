@@ -11,7 +11,7 @@ export const Row = styled.div<{
 `;
 
 export const Column = styled.div<{
-  $align?: "start" | "center" | "end";
+  $align?: "start" | "center" | "end" | "stretch";
   $gap?: number;
 }>`
   width: 100%;

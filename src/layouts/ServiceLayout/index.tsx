@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import * as S from "./style";
 
-const AppsLayout = () => {
+const ServiceLayout = () => {
   return (
     <S.Container>
       <Outlet />
@@ -9,4 +9,4 @@ const AppsLayout = () => {
   );
 };
 
-export default AppsLayout;
+export default ServiceLayout;

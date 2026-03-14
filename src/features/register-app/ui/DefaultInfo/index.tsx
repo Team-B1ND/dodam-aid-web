@@ -1,9 +1,16 @@
-import { Dropdown, FilledTextField } from "@b1nd/dodam-design-system";
+import {
+  Dropdown,
+  FileInput,
+  FilledTextField,
+} from "@b1nd/dodam-design-system";
 import Section from "@/widgets/section/ui";
 import WithLabel from "@/widgets/with-label/ui";
 import { Column, Row, Spacer } from "@/shared/styles/common";
+import { useForm } from "@/features/register-app/hooks/useForm";
 
 const DefaultInfo = () => {
+  const { form, handleField, icons, handleIcons } = useForm();
+
   return (
     <Section title="기본 정보">
       <Column $gap={28}>
@@ -14,6 +21,8 @@ const DefaultInfo = () => {
               label="앱 이름"
               type="text"
               required
+              value={form.name}
+              onChange={(e) => handleField("name", e.target.value)}
             />
           </Spacer>
           <Spacer>
@@ -22,26 +31,27 @@ const DefaultInfo = () => {
                 items={[]}
                 onSelectedItemChange={() => {}}
                 value="선택하세요"
-                customStyle={{ width: "100%", height: "100%" }} 
+                customStyle={{ width: "100%", height: "100%" }}
               />
             </WithLabel>
           </Spacer>
         </Row>
         <Row $gap={16}>
           <Spacer>
-            <FilledTextField
-              placeholder="도담도담"
+            <FileInput
               label="앱 로고"
-              type="text"
+              onChange={(e) => handleIcons("lightMode", e)}
               required
+              value={icons.lightMode}
+              accept="image/*"
             />
           </Spacer>
           <Spacer>
-            <FilledTextField
-              placeholder="도담도담"
-              label="앱 다크모드 로고"
-              type="text"
-              required
+            <FileInput
+              label="다크모드 앱 로고"
+              onChange={(e) => handleIcons("darkMode", e)}
+              value={icons.darkMode}
+              accept="image/*"
             />
           </Spacer>
         </Row>

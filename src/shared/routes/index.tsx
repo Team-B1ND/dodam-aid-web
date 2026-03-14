@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "@/pages/Home";
 import Apps from "@/pages/Apps";
-import AppsLayout from "@/layouts/AppsLayout";
+import ServiceLayout from "@/layouts/ServiceLayout";
 import RootLayout from "@/layouts/RootLayout";
 import RegisterApp from "@/pages/RegisterApp";
+import TeamsPage from "@/pages/Teams";
+import CreateTeamPage from "@/pages/CreateTeam";
 
 const router = createBrowserRouter([
   {
@@ -12,19 +14,19 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       {
-        path: "apps",
-        element: <AppsLayout />,
+        path: "/*",
+        element: <ServiceLayout />,
         children: [
-          { index: true, element: <Apps /> },
-          { path: "register", element: <RegisterApp /> },
-          { path: ":id", element: <></> },
+          { path: "apps", element: <Apps /> },
+          { path: "apps/register", element: <RegisterApp /> },
+          { path: "apps/:id", element: <></> },
+          { path: "teams", element: <TeamsPage /> },
+          { path: "teams/create", element: <CreateTeamPage /> },
+          { path: "teams/:id", element: <></> },
+          { path: "teams/:id/settings", element: <></> },
+          { path: "teams/:id/people", element: <></> },
         ],
       },
-      { path: "/teams", element: <></> },
-      { path: "/teams/create", element: <></> },
-      { path: "/teams/:id", element: <></> },
-      { path: "/teams/:id/settings", element: <></> },
-      { path: "/teams/:id/people", element: <></> },
       { path: "/docs", element: <></> },
     ],
   },
