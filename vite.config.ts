@@ -21,8 +21,8 @@ export default defineConfig({
     host: true,
     allowedHosts: true,
     https: {
-      key: fs.readFileSync("./local.b1nd.com-key.pem"),
-      cert: fs.readFileSync("./local.b1nd.com.pem"),
+      key: fs.readFileSync("./local.dodam-dev.b1nd.com-key.pem"),
+      cert: fs.readFileSync("./local.dodam-dev.b1nd.com.pem"),
     },
   },
 });
