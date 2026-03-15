@@ -1,3 +1,4 @@
+import type { Team } from "@/entities/teams/types";
 import type { CreateTeamReq } from "@/entities/teams/types/dto/req";
 import type { CreateTeamRes } from "@/entities/teams/types/dto/res";
 import { apiClient } from "@/shared/libs/api-client";
@@ -9,5 +10,9 @@ export const TeamApi = {
       "/inapp/team",
       data,
     );
+  },
+
+  async getTeams() {
+    return await apiClient.get<BaseResponse<Team[]>>("/inapp/team/me");
   },
 };
