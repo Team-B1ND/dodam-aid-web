@@ -10,7 +10,7 @@ interface Props {
 
 const TeamItem = ({ data }: Props) => {
   return (
-    <S.Container>
+    <S.Container to={`/teams/${data.teamId}`}>
       <S.Logo src={data.iconUrl} />
       <Spacer>
         <Column $align="start" $gap={4}>
@@ -37,7 +37,7 @@ const TeamItem = ({ data }: Props) => {
 
 TeamItem.Skeleton = () => {
   return (
-    <S.Container>
+    <S.Container to={`/teams`}>
       <Skeleton $width="72px" $height="72px" $radius={shapes.large} />
       <Spacer>
         <Column $align="start" $gap={4}>

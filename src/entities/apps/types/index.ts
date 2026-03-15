@@ -13,6 +13,8 @@ export interface App {
   githubReleaseUrl: string;
 }
 
+export type ReleaseStatus = "ALLOWED" | "PENDING" | "DENIED";
+
 export interface ServerConfig {
   name: string;
   serverAddress: string;
