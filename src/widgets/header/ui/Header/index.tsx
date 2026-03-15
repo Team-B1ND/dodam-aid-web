@@ -19,10 +19,14 @@ const Header = () => {
 
   const tempLogin = async () => {
     await axios
-      .post("https://dodam-dev.b1nd.com/auth/login", {
-        username: "rxd123",
-        password: "tw080401",
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        {
+          username: "rxd123",
+          password: "tw080401",
+        },
+        { withCredentials: true },
+      )
       .then(async () => {
         toast.success("로그인 성공");
         await queryClient.refetchQueries({ queryKey: ["user", "me"] });

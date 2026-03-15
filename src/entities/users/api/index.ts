@@ -4,6 +4,6 @@ import type { BaseResponse } from "@/shared/types/base-response";
 
 export const UserApi = {
   async getMyInfo() {
-    return await apiClient.post<BaseResponse<User>>("/user/me");
+    return await apiClient.get<BaseResponse<User>>("/user/me");
   },
 };
