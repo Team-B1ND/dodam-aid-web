@@ -1,10 +1,10 @@
-import { useGetMyInfoQuery } from "@/entities/users/queries";
+import { useGetMyInfo } from "@/features/get-my-info/hooks/useGetMyInfo";
 import { FilledButton } from "@b1nd/dodam-design-system";
 
 const UserIndicator = () => {
-  const { data } = useGetMyInfoQuery();
+  const user = useGetMyInfo();
 
-  return <FilledButton size="medium">{data.data.data.name} 님</FilledButton>;
+  return <FilledButton size="medium">{user.name} 님</FilledButton>;
 };
 
 export default UserIndicator;

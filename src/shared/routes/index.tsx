@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
+      { path: "/docs", element: <></> },
       {
         path: "/*",
         element: <ServiceLayout />,
@@ -27,7 +28,6 @@ const router = createBrowserRouter([
           { path: "teams/:id/people", element: <></> },
         ],
       },
-      { path: "/docs", element: <></> },
     ],
   },
 ]);

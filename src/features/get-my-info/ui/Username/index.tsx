@@ -1,10 +1,10 @@
-import { useGetMyInfoQuery } from "@/entities/users/queries";
 import * as S from "./style";
+import { useGetMyInfo } from "@/features/get-my-info/hooks/useGetMyInfo";
 
 const Username = () => {
-  const { data } = useGetMyInfoQuery();
+  const user = useGetMyInfo();
 
-  return <S.Name>{data.data.data.name}</S.Name>;
+  return <S.Name>{user.name}</S.Name>;
 };
 
 Username.Skeleton = () => {
