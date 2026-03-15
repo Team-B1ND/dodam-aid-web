@@ -73,6 +73,10 @@ const style = css`
     -webkit-font-smoothing: antialiased;
     word-break: keep-all;
     user-select: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   body {
