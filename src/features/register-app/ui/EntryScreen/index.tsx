@@ -6,7 +6,7 @@ import { useFileToImage } from "@/shared/hooks/useFileToImage";
 import { useMemo } from "react";
 
 const EntryScreen = () => {
-  const { icons, form } = useForm();
+  const { icons, form, team } = useForm();
   const files = useMemo(
     () => [icons.lightMode, icons.darkMode] as const,
     [icons.lightMode, icons.darkMode],
@@ -21,12 +21,14 @@ const EntryScreen = () => {
           <S.Logo src={theme === "light" ? previews[0] : previews[1]} />
           <Column $gap={2}>
             <S.AppName>{form.name || "앱 이름"}</S.AppName>
-            <S.TeamName>{form.teamId || "내 팀"}</S.TeamName>
+            <S.TeamName>{team?.name || "내 팀"}</S.TeamName>
           </Column>
         </Column>
         <Column $gap={4}>
           <S.AppSubName>{form.subtitle || "앱 부제목"}</S.AppSubName>
-          <S.AppDescription>{form.description || "앱 설명이 들어가는 자리입니다."}</S.AppDescription>
+          <S.AppDescription>
+            {form.description || "앱 설명이 들어가는 자리입니다."}
+          </S.AppDescription>
         </Column>
       </Column>
       <Row>

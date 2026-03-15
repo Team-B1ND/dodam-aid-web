@@ -9,7 +9,6 @@ import type { ChangeEvent } from "react";
 export const useForm = () => {
   const { form, setForm } = useFormStore();
   const { logo, setLogo } = useLogoStore();
-  const { mutateAsync, isPending } = useCreateTeamMutation();
   const { upload, isLoading } = useUploads();
   const toast = useToast();
 
@@ -27,6 +26,18 @@ export const useForm = () => {
     if (!name.trim() || !description.trim() || !githubUrl.trim()) return false;
     return true;
   };
+
+  const initForm = () => {
+    setForm({
+      name: "",
+      description: "",
+      githubUrl: "",
+      iconUrl: "",
+    });
+    setLogo(null);
+  };
+
+  const { mutateAsync, isPending } = useCreateTeamMutation(initForm);
 
   const submit = async () => {
     const isValidated = validate();

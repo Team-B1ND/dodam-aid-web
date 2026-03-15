@@ -16,8 +16,8 @@ const HostingInfo = () => {
               placeholder="dodam api"
               label="서버 이름"
               type="text"
-              required
               value={form.server?.name || ""}
+              required={checks.useServer}
               onChange={(e) => handleServerField("name", e.target.value)}
               disabled={!checks.useServer}
             />
@@ -27,7 +27,7 @@ const HostingInfo = () => {
               placeholder="IPv4 또는 DNS"
               label="물리 서버 주소"
               type="text"
-              required
+              required={checks.useServer}
               value={form.server?.serverAddress || ""}
               onChange={(e) => handleServerField("serverAddress", e.target.value)}
               disabled={!checks.useServer}
@@ -40,6 +40,7 @@ const HostingInfo = () => {
               placeholder="/api"
               label="서버 경로 ( path )"
               type="text"
+              required={checks.useServer}
               value={form.server?.redirectPath || ""}
               onChange={(e) => handleServerField("redirectPath", e.target.value)}
               disabled={!checks.useServer}

@@ -1,14 +1,23 @@
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useFormStore } from "@/features/register-app/stores/form";
+import { useIconsStore } from "@/features/register-app/stores/icons";
 import { isFilled } from "@/features/register-app/utils/is-filled";
 import { useEffect } from "react";
 import { useBlocker } from "react-router-dom";
 
 export const useLeaveConfirm = () => {
-  const { form, icons } = useForm();
+  const form = useFormStore((state) => state.form);
+  const icons = useIconsStore((state) => state.icons);
 
   const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      currentLocation.pathname !== nextLocation.pathname && isFilled(form, icons)
+    ({ currentLocation, nextLocation }) => {
+      const currentForm = useFormStore.getState().form;
+      const currentIcons = useIconsStore.getState().icons;
+
+      return (
+        currentLocation.pathname !== nextLocation.pathname &&
+        isFilled(currentForm, currentIcons)
+      );
+    }
   );
 
   useEffect(() => {

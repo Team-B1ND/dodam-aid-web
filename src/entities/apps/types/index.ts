@@ -5,7 +5,7 @@ export interface App {
   subtitle: string;
   description: string;
   iconUrl: string;
-  darkIconUrl: string;
+  darkIconUrl?: string;
   inquiryMail: string;
   server?: ServerConfig;
   active: boolean;

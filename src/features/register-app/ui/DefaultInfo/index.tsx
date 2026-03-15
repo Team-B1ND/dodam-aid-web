@@ -9,7 +9,15 @@ import { Column, Row, Spacer } from "@/shared/styles/common";
 import { useForm } from "@/features/register-app/hooks/useForm";
 
 const DefaultInfo = () => {
-  const { form, handleField, icons, handleIcons } = useForm();
+  const {
+    form,
+    handleField,
+    icons,
+    handleIcons,
+    teamsOption,
+    team,
+    handleTeam,
+  } = useForm();
 
   return (
     <Section title="기본 정보">
@@ -28,9 +36,9 @@ const DefaultInfo = () => {
           <Spacer>
             <WithLabel label="소속 팀 선택" required>
               <Dropdown
-                items={[]}
-                onSelectedItemChange={() => {}}
-                value="선택하세요"
+                items={teamsOption}
+                onSelectedItemChange={handleTeam}
+                value={team?.name || "선택하세요."}
                 customStyle={{ width: "100%", height: "100%" }}
               />
             </WithLabel>
