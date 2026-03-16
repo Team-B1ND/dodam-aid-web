@@ -29,7 +29,7 @@ export const useRegisterAppMutation = (initData: () => void) => {
   });
 };
 
-export const useUpdateAppMutation = (initData: () => void) => {
+export const useUpdateAppMutation = () => {
   const toast = useToast();
   const queryClient = useQueryClient();
 
@@ -40,7 +40,6 @@ export const useUpdateAppMutation = (initData: () => void) => {
       await queryClient.refetchQueries({
         queryKey: ["app", req.appId],
       });
-      initData();
     },
     onError: (e: ErrorResponse) => {
       toast.error(

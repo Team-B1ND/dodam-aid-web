@@ -14,7 +14,7 @@ export const useEditServer = () => {
       serverAddress: app.server.serverAddress,
       useServer: true,
     });
-  }, []);
+  }, [app]);
 
   const handleTextForm = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

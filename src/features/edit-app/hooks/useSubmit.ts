@@ -8,9 +8,9 @@ import { useToast } from "@b1nd/dodam-design-system";
 
 export const useSubmit = (finishEdit: () => void) => {
   const app = useGetAppDetail();
-  const { info, setInfo } = useInfoStore();
-  const { server, setServer } = useServerStore();
-  const { options, setOptions } = useOptionsStore();
+  const { info } = useInfoStore();
+  const { server } = useServerStore();
+  const { options } = useOptionsStore();
   const toast = useToast();
 
   const validate = () => {
@@ -25,26 +25,7 @@ export const useSubmit = (finishEdit: () => void) => {
     return true;
   };
 
-  const initForm = () => {
-    setInfo({
-      description: app.description,
-      iconUrl: app.iconUrl,
-      inquiryMail: app.inquiryMail,
-      darkIconUrl: app.darkIconUrl,
-    });
-    setServer({
-      name: app.server?.name || "",
-      redirectPath: app.server?.redirectPath || "",
-      serverAddress: app.server?.serverAddress || "",
-      useServer: !!app.server,
-    });
-    setOptions({
-      omitApiPrefix: app.server?.omitApiPrefix || false,
-      usePushNotification: app.server?.usePushNotification || false,
-    });
-  };
-
-  const { mutateAsync, isPending } = useUpdateAppMutation(initForm);
+  const { mutateAsync, isPending } = useUpdateAppMutation();
 
   const submit = async () => {
     const isValidated = validate();

@@ -36,7 +36,7 @@ const TeamsHeader = ({
       </h2>
       {showCta && (
         <FilledButton size="medium" onClick={handleClick}>
-          <Plus size={18} color={colors.text.primary} />
+          <Plus size={18} color={colors.static.white} />
           <p style={{ marginLeft: 4 }}>팀 생성하기</p>
         </FilledButton>
       )}

@@ -15,7 +15,7 @@ export const useEditInfo = () => {
       inquiryMail: app.inquiryMail,
       darkIconUrl: app.darkIconUrl,
     });
-  }, []);
+  }, [app]);
 
   const handleTextForm = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -17,7 +17,7 @@ const AppList = () => {
         <AppSearch query={query} setQuery={handleQuery} />
         <Spacer />
         <FilledButton size="medium" onClick={() => navigate("/apps/register")}>
-          <Plus size={18} color={colors.text.primary} />
+          <Plus size={18} color={colors.static.white} />
           <p style={{ marginLeft: 4 }}>애플리케이션 등록하기</p>
         </FilledButton>
       </Row>
@@ -35,7 +35,7 @@ AppList.Skeleton = () => {
         <AppSearch query="" setQuery={() => {}} />
         <Spacer />
         <FilledButton size="medium" onClick={() => {}}>
-          <Plus size={18} color={colors.text.primary} />
+          <Plus size={18} color={colors.static.white} />
           <p style={{ marginLeft: 4 }}>애플리케이션 등록하기</p>
         </FilledButton>
       </Row>

@@ -12,7 +12,7 @@ export const useEditOptions = () => {
       omitApiPrefix: app.server?.omitApiPrefix,
       usePushNotification: app.server?.usePushNotification,
     });
-  }, []);
+  }, [app]);
 
   const handleOption = (key: "omitApiPrefix" | "usePushNotification") => {
   setOptions({
