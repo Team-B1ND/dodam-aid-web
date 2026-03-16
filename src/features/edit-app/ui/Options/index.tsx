@@ -39,4 +39,24 @@ const Options = ({ isEditMode }: Props) => {
   );
 };
 
+Options.Skeleton = () => {
+  return (
+    <Column $gap={24}>
+      <Row $align="center">
+        <Column $gap={4}>
+          <S.Label>API 접두사 생략</S.Label>
+          <S.Example>생략 시, /api/user → /user</S.Example>
+        </Column>
+        <Spacer />
+        <Switch checked={false} onChange={() => {}} disabled />
+      </Row>
+      <Row $align="center">
+        <S.Label>푸시알람 기능 사용</S.Label>
+        <Spacer />
+        <Switch checked={false} onChange={() => {}} disabled />
+      </Row>
+    </Column>
+  );
+};
+
 export default Options;

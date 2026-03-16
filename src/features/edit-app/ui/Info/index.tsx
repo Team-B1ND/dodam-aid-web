@@ -1,8 +1,8 @@
-import { Column, Row } from "@/shared/styles/common";
+import { Column, Row, Skeleton } from "@/shared/styles/common";
 import WithLabel from "@/widgets/with-label/ui";
 import * as S from "./style";
 import { useEditInfo } from "@/features/edit-app/hooks/useEditInfo";
-import { FilledTextField } from "@b1nd/dodam-design-system";
+import { FilledTextField, shapes } from "@b1nd/dodam-design-system";
 import SelectIcon from "@/features/edit-app/ui/SelectIcon";
 
 interface Props {
@@ -80,6 +80,31 @@ const Info = ({ isEditMode }: Props) => {
       </WithLabel>
       <WithLabel label="문의 메일 주소">
         <S.Value>{info.inquiryMail || "문의 메일이 없습니다."}</S.Value>
+      </WithLabel>
+    </Column>
+  );
+};
+
+Info.Skeleton = () => {
+  return (
+    <Column $gap={24}>
+      <WithLabel label="앱 아이콘">
+        <Row $gap={12}>
+          <Column $align="center" $size="fit" $gap={4}>
+            <Skeleton $height="84px" $width="84px" $radius={shapes.small} />
+            <S.IconText>default</S.IconText>
+          </Column>
+          <Column $align="center" $size="fit" $gap={4}>
+            <Skeleton $height="84px" $width="84px" $radius={shapes.small} />
+            <S.IconText>dark mode</S.IconText>
+          </Column>
+        </Row>
+      </WithLabel>
+      <WithLabel label="앱 설명">
+        <Skeleton $width="240px" $height="24px" $radius={shapes.small} />
+      </WithLabel>
+      <WithLabel label="문의 메일 주소">
+        <Skeleton $width="140px" $height="24px" $radius={shapes.small} />
       </WithLabel>
     </Column>
   );

@@ -77,4 +77,16 @@ const Server = ({ isEditMode }: Props) => {
   );
 };
 
+Server.Skeleton = () => {
+  return (
+    <Column $gap={24}>
+      <Row $align="center">
+        <S.Label>서버 활성화</S.Label>
+        <Spacer />
+        <Switch checked={false} onChange={() => {}} disabled />
+      </Row>
+    </Column>
+  );
+};
+
 export default Server;

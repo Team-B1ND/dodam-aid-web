@@ -8,13 +8,17 @@ interface Props {
 }
 
 const Submit = ({ isEditMode, setIsEditMode }: Props) => {
-  const submit = useSubmit(() => setIsEditMode(false));
+  const { submit, isPending } = useSubmit(() => setIsEditMode(false));
 
   return (
     <FilledButton onClick={isEditMode ? submit : () => setIsEditMode(true)}>
-      {isEditMode ? "수정 완료" : "정보 수정하기"}
+      {isPending ? "수정 중..." : isEditMode ? "수정 완료" : "정보 수정하기"}
     </FilledButton>
   );
+};
+
+Submit.Skeleton = () => {
+  return <FilledButton>정보 수정하기</FilledButton>;
 };
 
 export default Submit;

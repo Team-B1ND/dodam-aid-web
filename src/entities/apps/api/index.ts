@@ -1,15 +1,19 @@
 import type { App } from "@/entities/apps/types";
-import type { CreateAppReq } from "@/entities/apps/types/dto/req";
+import type { CreateAppReq, UpdateAppReq } from "@/entities/apps/types/dto/req";
 import type {
   AppListItemRes,
-  CreateAppRes,
+  ModifyAppRes,
 } from "@/entities/apps/types/dto/res";
 import { apiClient } from "@/shared/libs/api-client";
 import type { BaseResponse } from "@/shared/types/base-response";
 
 export const AppApi = {
   async registerApp(data: CreateAppReq) {
-    return await apiClient.post<BaseResponse<CreateAppRes>>("/inapp/app", data);
+    return await apiClient.post<BaseResponse<ModifyAppRes>>("/inapp/app", data);
+  },
+
+  async updateApp(data: UpdateAppReq) {
+    return await apiClient.patch<BaseResponse<ModifyAppRes>>("/inapp/app", data);
   },
 
   async getApps() {

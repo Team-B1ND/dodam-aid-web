@@ -1,20 +1,27 @@
+import { useDateTime } from "@/widgets/app-preview/hooks/useDateTime";
 import { Column, Row, Spacer } from "@/shared/styles/common";
-import * as S from "./style";
-import { useGetDateTime } from "@/features/register-app/hooks/useGetDateTime";
-import { useForm } from "@/features/register-app/hooks/useForm";
-import { useFileToImage } from "@/shared/hooks/useFileToImage";
 import { useTheme } from "@b1nd/dodam-design-system";
-import { useMemo } from "react";
+import * as S from "./style";
 
-const PushScreen = () => {
+interface Props {
+  name?: string;
+  subtitle?: string;
+  iconUrl?: string;
+  darkIconUrl?: string;
+  pushLink?: string;
+  enablePushLink?: boolean;
+}
+
+const PushScreen = ({
+  name,
+  subtitle,
+  iconUrl,
+  darkIconUrl,
+  pushLink = "https://dodam.b1nd.com",
+  enablePushLink = false,
+}: Props) => {
   const { h1, h2, m1, m2, month, date, day, ampm, displayHours, minutes } =
-    useGetDateTime();
-  const { form, icons } = useForm();
-  const files = useMemo(
-    () => [icons.lightMode, icons.darkMode] as const,
-    [icons.lightMode, icons.darkMode],
-  );
-  const previews = useFileToImage(files);
+    useDateTime();
   const theme = useTheme();
 
   return (
@@ -30,24 +37,24 @@ const PushScreen = () => {
           {month}월 {date}일 {day}
         </S.DateText>
         <a
-          href="https://dodam.b1nd.com"
+          href={pushLink}
           target="_blank"
           style={{
             width: "100%",
-            pointerEvents: form.name === "도담도담" ? "auto" : "none",
+            pointerEvents: enablePushLink ? "auto" : "none",
           }}>
           <S.Notification>
             <Row $align="center" $gap={8}>
-              <S.Logo src={theme === "light" ? previews[0] : previews[1]} />
+              <S.Logo src={theme === "light" ? iconUrl : darkIconUrl} />
               <Spacer>
                 <Column>
                   <Row $align="center" $gap={4}>
-                    <S.AppName>{form.name || "앱 이름"}</S.AppName>
+                    <S.AppName>{name || "앱 이름"}</S.AppName>
                     <S.Time>
                       {ampm} {displayHours}:{minutes}
                     </S.Time>
                   </Row>
-                  <S.NotificationText>{form.subtitle}</S.NotificationText>
+                  <S.NotificationText>{subtitle}</S.NotificationText>
                 </Column>
               </Spacer>
             </Row>

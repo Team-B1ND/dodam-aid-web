@@ -42,7 +42,7 @@ export const Notification = styled.div`
   width: 100%;
   padding: 8px 10px;
   background-color: color-mix(in srgb, ${colors.static.black} 60%, transparent);
-  border-radius: ${shapes.large}
+  border-radius: ${shapes.large};
 `;
 
 export const Logo = styled.img`

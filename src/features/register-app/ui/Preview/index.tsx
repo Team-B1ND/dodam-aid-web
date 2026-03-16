@@ -1,40 +1,26 @@
-import EntryScreen from "@/features/register-app/ui/EntryScreen";
-import { Column } from "@/shared/styles/common";
-import {
-  SegmentedButton,
-  type SegmentedButtonData,
-} from "@b1nd/dodam-design-system";
-import * as S from "./style";
-import { useState } from "react";
-import PushScreen from "@/features/register-app/ui/PushScreen";
+import { useForm } from "@/features/register-app/hooks/useForm";
+import { useFileToImage } from "@/shared/hooks/useFileToImage";
+import AppPreview from "@/widgets/app-preview/ui/AppPreview";
+import { useMemo } from "react";
 
 const Preview = () => {
-  const [screen, setScreen] = useState<SegmentedButtonData[]>([
-    {
-      text: "진입 화면",
-      value: "entry-screen",
-      isActive: true,
-    },
-    {
-      text: "푸시 알림",
-      value: "push-screen",
-      isActive: false,
-    },
-  ]);
-  const [selected, setSelected] = useState(screen[0].value);
+  const { form, icons, team } = useForm();
+  const files = useMemo(
+    () => [icons.lightMode, icons.darkMode] as const,
+    [icons.lightMode, icons.darkMode],
+  );
+  const previews = useFileToImage(files);
 
   return (
-    <S.Container>
-      <Column $gap={16}>
-        <SegmentedButton
-          data={screen}
-          setData={setScreen}
-          onBlockClick={setSelected}
-          containerCustomStyle={{ width: "100%" }}
-        />
-        {selected === "push-screen" ? <PushScreen /> : <EntryScreen />}
-      </Column>
-    </S.Container>
+    <AppPreview
+      name={form.name}
+      subtitle={form.subtitle}
+      description={form.description}
+      teamName={team?.name}
+      iconUrl={previews[0]}
+      darkIconUrl={previews[1]}
+      enablePushLink={form.name === "도담도담"}
+    />
   );
 };
 

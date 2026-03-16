@@ -32,9 +32,9 @@ export const TeamName = styled.p`
 
 export const AppSubName = styled.p`
   ${typoCss("Body2", "Bold")};
-`
+`;
 
 export const AppDescription = styled.p`
   ${typoCss("Label", "Medium")};
   color: ${colors.text.secondary};
-`
+`;

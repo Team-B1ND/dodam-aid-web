@@ -14,12 +14,33 @@ export const useRegisterAppMutation = (initData: () => void) => {
     mutationFn: AppApi.registerApp,
     onSuccess: async (res, req) => {
       toast.success(res.data.message, TOSAT_CONFIG);
-      await queryClient.refetchQueries({ queryKey: ["app", "me"] });
       await queryClient.refetchQueries({
         queryKey: ["app", "team", req.teamId],
       });
       initData();
-      navigate(`/apps/${res.data.data.appId}`);
+      navigate(`/teams/${req.teamId}/${res.data.data.appId}`);
+    },
+    onError: (e: ErrorResponse) => {
+      toast.error(
+        e.response?.data.message || "요청을 처리하지 못했어요.",
+        TOSAT_CONFIG,
+      );
+    },
+  });
+};
+
+export const useUpdateAppMutation = (initData: () => void) => {
+  const toast = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: AppApi.updateApp,
+    onSuccess: async (res, req) => {
+      toast.success(res.data.message, TOSAT_CONFIG);
+      await queryClient.refetchQueries({
+        queryKey: ["app", req.appId],
+      });
+      initData();
     },
     onError: (e: ErrorResponse) => {
       toast.error(
