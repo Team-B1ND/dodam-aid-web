@@ -10,6 +10,7 @@ import TeamApplications from "@/pages/TeamApplications";
 import TeamLayout from "@/layouts/TeamLayout";
 import AppDetailPage from "@/pages/AppDetail";
 import AppLayout from "@/layouts/AppLayout";
+import AppReleasePage from "@/pages/AppRelease";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
             element: <AppLayout />,
             children: [
               { index: true, element: <AppDetailPage /> },
-              { path: "releases", element: <></> },
+              { path: "releases", element: <AppReleasePage /> },
               { path: "settings", element: <></> },
               { path: "openapi", element: <></> },
             ],

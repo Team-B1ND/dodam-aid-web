@@ -1,5 +1,5 @@
 import { Column, Row } from "@/shared/styles/common";
-import { FilledButton } from "@b1nd/dodam-design-system";
+import { FilledButton, useTheme } from "@b1nd/dodam-design-system";
 import * as S from "./style";
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
   subtitle?: string;
   description?: string;
   iconUrl?: string;
+  darkIconUrl?: string;
 }
 
 const EntryScreen = ({
@@ -16,12 +17,17 @@ const EntryScreen = ({
   subtitle,
   description,
   iconUrl,
+  darkIconUrl,
 }: Props) => {
+  const theme = useTheme();
+
   return (
     <S.Container>
       <Column $gap={16}>
         <Column $gap={12}>
-          <S.Logo src={iconUrl} />
+          <S.Logo
+            src={theme === "dark" && darkIconUrl ? darkIconUrl : iconUrl}
+          />
           <Column $gap={2}>
             <S.AppName>{name || "앱 이름"}</S.AppName>
             <S.TeamName>{teamName || "내 팀"}</S.TeamName>

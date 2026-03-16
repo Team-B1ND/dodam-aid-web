@@ -45,7 +45,9 @@ const PushScreen = ({
           }}>
           <S.Notification>
             <Row $align="center" $gap={8}>
-              <S.Logo src={theme === "light" ? iconUrl : darkIconUrl} />
+              <S.Logo
+                src={theme === "dark" && darkIconUrl ? darkIconUrl : iconUrl}
+              />
               <Spacer>
                 <Column>
                   <Row $align="center" $gap={4}>

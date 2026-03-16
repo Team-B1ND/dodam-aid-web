@@ -1,3 +1,5 @@
+import type { User } from "@/entities/users/types";
+
 export interface App {
   appId: string;
   teamId: string;
@@ -31,10 +33,11 @@ export interface Release {
   releaseId: string;
   releaseUrl: string;
   memo: string;
+  releaseNote?: string;
   denyResult: string;
-  status: string;
+  status: ReleaseStatus;
   enabled: boolean;
-  updatedUser: string;
+  updatedUser?: User;
   createdAt: string;
   modifiedAt: string;
 }
