@@ -8,6 +8,8 @@ import TeamsPage from "@/pages/Teams";
 import CreateTeamPage from "@/pages/CreateTeam";
 import TeamApplications from "@/pages/TeamApplications";
 import TeamLayout from "@/layouts/TeamLayout";
+import AppDetailPage from "@/pages/AppDetail";
+import AppLayout from "@/layouts/AppLayout";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +36,16 @@ const router = createBrowserRouter([
               { path: "members", element: <></> },
             ],
           },
-          { path: "teams/:id/:appId", element: <></> },
+          {
+            path: "teams/:id/:appId",
+            element: <AppLayout />,
+            children: [
+              { index: true, element: <AppDetailPage /> },
+              { path: "releases", element: <></> },
+              { path: "settings", element: <></> },
+              { path: "openapi", element: <></> },
+            ],
+          },
         ],
       },
     ],

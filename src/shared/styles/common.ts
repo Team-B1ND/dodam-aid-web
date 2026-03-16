@@ -39,3 +39,9 @@ export const Skeleton = styled.div<{
   border-radius: ${({ $radius }) => $radius};
   background-color: ${colors.border.disabled};
 `;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${colors.border.normal};
+`;

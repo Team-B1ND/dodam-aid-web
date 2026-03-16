@@ -29,7 +29,7 @@ const Header = () => {
       )
       .then(async () => {
         toast.success("로그인 성공");
-        await queryClient.refetchQueries({ queryKey: ["user", "me"] });
+        await queryClient.refetchQueries();
       });
   };
 

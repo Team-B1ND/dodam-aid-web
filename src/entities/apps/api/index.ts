@@ -1,3 +1,4 @@
+import type { App } from "@/entities/apps/types";
 import type { CreateAppReq } from "@/entities/apps/types/dto/req";
 import type {
   AppListItemRes,
@@ -22,8 +23,6 @@ export const AppApi = {
   },
 
   async getAppById(appId: string) {
-    return await apiClient.get<BaseResponse<AppListItemRes[]>>(
-      `/inapp/${appId}`,
-    );
+    return await apiClient.get<BaseResponse<App>>(`/inapp/app/${appId}`);
   },
 };
