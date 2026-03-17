@@ -1,16 +1,14 @@
-import { colors, Pen, Trash } from "@b1nd/dodam-design-system";
+import { colors, Pen } from "@b1nd/dodam-design-system";
 import * as S from "./style";
 import { useRef, type ChangeEvent } from "react";
 
 interface Props {
-  variant: "iconUrl" | "darkIconUrl";
-  onChange: (variant: "iconUrl" | "darkIconUrl", value: File | null) => void;
-  remove: () => void;
+  onChange: (value: File | null) => void;
   isLoading: boolean;
   value?: string;
 }
 
-const SelectIcon = ({ variant, onChange, remove, value, isLoading }: Props) => {
+const SelectIcon = ({ onChange, value, isLoading }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   const handleOpen = () => {
@@ -19,7 +17,7 @@ const SelectIcon = ({ variant, onChange, remove, value, isLoading }: Props) => {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    onChange(variant, file);
+    onChange(file);
   };
 
   return (
@@ -36,11 +34,6 @@ const SelectIcon = ({ variant, onChange, remove, value, isLoading }: Props) => {
             accept="image/*"
           />
         </S.Edit>
-        {variant === "darkIconUrl" && !!value && (
-          <S.Remove onClick={remove} disabled={isLoading}>
-            <Trash size={32} color={colors.static.white} pointer />
-          </S.Remove>
-        )}
       </S.Overlay>
     </S.Container>
   );

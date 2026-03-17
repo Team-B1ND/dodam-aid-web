@@ -13,11 +13,11 @@ export const useRegisterAppMutation = (initData: () => void) => {
   return useMutation({
     mutationFn: AppApi.registerApp,
     onSuccess: async (res, req) => {
-      toast.success(res.data.message, TOSAT_CONFIG);
       await queryClient.refetchQueries({
         queryKey: ["app", "team", req.teamId],
       });
       initData();
+      toast.success(res.data.message, TOSAT_CONFIG);
       navigate(`/teams/${req.teamId}/${res.data.data.appId}`);
     },
     onError: (e: ErrorResponse) => {
@@ -36,10 +36,10 @@ export const useUpdateAppMutation = () => {
   return useMutation({
     mutationFn: AppApi.updateApp,
     onSuccess: async (res, req) => {
-      toast.success(res.data.message, TOSAT_CONFIG);
       await queryClient.refetchQueries({
         queryKey: ["app", req.appId],
       });
+      toast.success(res.data.message, TOSAT_CONFIG);
     },
     onError: (e: ErrorResponse) => {
       toast.error(

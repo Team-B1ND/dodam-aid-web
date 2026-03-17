@@ -1,5 +1,5 @@
 import type { Team } from "@/entities/teams/types";
-import type { CreateTeamReq } from "@/entities/teams/types/dto/req";
+import type { CreateTeamReq, UpdateTeamReq } from "@/entities/teams/types/dto/req";
 import type { CreateTeamRes } from "@/entities/teams/types/dto/res";
 import type { User } from "@/entities/users/types";
 import { apiClient } from "@/shared/libs/api-client";
@@ -23,5 +23,9 @@ export const TeamApi = {
 
   async getMembers(teamId: string) {
     return await apiClient.get<BaseResponse<User[]>>(`/inapp/team/${teamId}/member`);
+  },
+
+  async updateTeam(data: UpdateTeamReq) {
+    return await apiClient.patch(`/inapp/team`, data);
   }
 };

@@ -11,6 +11,7 @@ import TeamLayout from "@/layouts/TeamLayout";
 import AppDetailPage from "@/pages/AppDetail";
 import AppLayout from "@/layouts/AppLayout";
 import AppReleasePage from "@/pages/AppRelease";
+import TeamSettings from "@/pages/TeamSettings";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             element: <TeamLayout />,
             children: [
               { index: true, element: <TeamApplications /> },
-              { path: "settings", element: <></> },
+              { path: "settings", element: <TeamSettings /> },
               { path: "members", element: <></> },
             ],
           },

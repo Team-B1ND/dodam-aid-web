@@ -13,10 +13,30 @@ export const useCreateTeamMutation = (initData: () => void) => {
   return useMutation({
     mutationFn: TeamApi.createTeam,
     onSuccess: async (res) => {
-      toast.success(res.data.message, TOSAT_CONFIG);
       await queryClient.refetchQueries({ queryKey: ["team", "me"] });
       initData();
+      toast.success(res.data.message, TOSAT_CONFIG);
       navigate(`/teams/${res.data.data.teamId}`);
+    },
+    onError: (e: ErrorResponse) => {
+      toast.error(
+        e.response?.data.message || "요청을 처리하지 못했어요.",
+        TOSAT_CONFIG,
+      );
+    },
+  });
+};
+
+export const useUpdateTeamMutation = () => {
+  const toast = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: TeamApi.updateTeam,
+    onSuccess: async (res, req) => {
+      await queryClient.refetchQueries({ queryKey: ["team", "me"] });
+      await queryClient.refetchQueries({ queryKey: ["team", req.teamId] });
+      toast.success(res.data.message, TOSAT_CONFIG);
     },
     onError: (e: ErrorResponse) => {
       toast.error(
