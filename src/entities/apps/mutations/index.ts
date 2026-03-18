@@ -18,7 +18,7 @@ export const useRegisterAppMutation = (initData: () => void) => {
       });
       initData();
       toast.success(res.data.message, TOSAT_CONFIG);
-      navigate(`/teams/${req.teamId}/${res.data.data.appId}`);
+      navigate(`/teams/${req.teamId}/apps/${res.data.data.appId}`);
     },
     onError: (e: ErrorResponse) => {
       toast.error(

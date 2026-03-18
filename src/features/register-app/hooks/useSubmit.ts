@@ -7,36 +7,8 @@ import { useDetailInfoStore } from "@/features/register-app/stores/detail-info";
 import { useHostingInfoStore } from "@/features/register-app/stores/hosting-info";
 import { useOtherInfoStore } from "@/features/register-app/stores/other-info";
 import { useTermsStore } from "@/features/register-app/stores/terms";
-
-const resetAllSections = () => {
-  useDefaultInfoStore.getState().setDefaultInfo({
-    name: "",
-    team: null,
-    icons: {
-      lightMode: null,
-      darkMode: null,
-    },
-  });
-  useDetailInfoStore.getState().setDetailInfo({
-    subtitle: "",
-    githubReleaseUrl: "",
-    description: "",
-    inquiryMail: "",
-  });
-  useHostingInfoStore.getState().setHostingInfo({
-    useServer: false,
-    name: "",
-    serverAddress: "",
-    redirectPath: "",
-  });
-  useOtherInfoStore.getState().setOtherInfo({
-    omitApiPrefix: false,
-    usePushNotification: false,
-  });
-  useTermsStore.getState().setTerms({
-    agrees: [false, false, false],
-  });
-};
+import { useGetTeamDetail } from "@/features/get-team-detail/hooks/useGetTeamDetail";
+import { resetAllSections } from "@/features/register-app/utils/reset-all-sections";
 
 export const useSubmit = () => {
   const { defaultInfo } = useDefaultInfoStore();
@@ -47,13 +19,13 @@ export const useSubmit = () => {
   const toast = useToast();
   const { upload, isLoading } = useUploads();
   const { mutateAsync, isPending } = useRegisterAppMutation(resetAllSections);
+  const team = useGetTeamDetail();
 
   const submit = async () => {
     if (
       !defaultInfo.name.trim() ||
       !detailInfo.subtitle.trim() ||
-      !detailInfo.githubReleaseUrl.trim() ||
-      !defaultInfo.team
+      !detailInfo.githubReleaseUrl.trim()
     ) {
       toast.warning("필수 입력 필드를 모두 채워주세요.", TOSAT_CONFIG);
       return;
@@ -90,7 +62,7 @@ export const useSubmit = () => {
       subtitle: detailInfo.subtitle,
       description: detailInfo.description,
       inquiryMail: detailInfo.inquiryMail,
-      teamId: defaultInfo.team.value,
+      teamId: team.teamId,
       iconUrl,
       darkIconUrl: darkIconUrl || undefined,
       githubReleaseUrl: detailInfo.githubReleaseUrl,

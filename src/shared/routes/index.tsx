@@ -42,7 +42,6 @@ const router = createBrowserRouter([
             children: [
               { index: true, element: <AppDetailPage /> },
               { path: "releases", element: <AppReleasePage /> },
-              { path: "settings", element: <></> },
               { path: "openapi", element: <></> },
             ],
           },

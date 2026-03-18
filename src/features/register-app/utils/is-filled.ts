@@ -1,9 +1,6 @@
-import type { DropdownItem } from "@b1nd/dodam-design-system";
-
 interface Params {
   defaultInfo: {
     name: string;
-    team: DropdownItem | null;
     icons: { lightMode: File | null; darkMode: File | null };
   };
   detailInfo: {
@@ -36,7 +33,6 @@ export const isFilled = ({
 }: Params) => {
   const hasDefaultValue =
     !!defaultInfo.name.trim() ||
-    !!defaultInfo.team ||
     defaultInfo.icons.lightMode !== null ||
     defaultInfo.icons.darkMode !== null;
 

@@ -7,15 +7,14 @@ export const useMenu = () => {
 
   const move = (index: number) => {
     navigate(
-      `/${tokens[1]}/${tokens[2]}/${tokens[3]}${index === 1 ? "/releases" : index === 2 ? "/settings" : index === 3 ? "/openapi" : ""}`,
+      `/${tokens[0]}/${tokens[1]}/${tokens[2]}/${tokens[3]}/${tokens[4]}${index === 1 ? "/releases" : index === 2 ? "/openapi" : ""}`,
     );
   };
 
   return {
     move,
-    isInfoPage: tokens.length === 4,
-    isReleasesPage: tokens[4] === "releases",
-    isSettingsPage: tokens[4] === "settings",
-    isOpenapiPage: tokens[4] === "openapi",
+    isInfoPage: tokens.length === 5,
+    isReleasesPage: tokens[5] === "releases",
+    isOpenapiPage: tokens[5] === "openapi",
   };
 };
