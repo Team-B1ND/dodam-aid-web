@@ -2,10 +2,10 @@ import { Column, Row } from "@/shared/styles/common";
 import Section from "@/widgets/section/ui";
 import * as S from "./style";
 import { Checkbox } from "@b1nd/dodam-design-system";
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useTerms } from "@/features/register-app/hooks/useTerms";
 
 const Terms = () => {
-  const { checks, handleAgree } = useForm();
+  const { terms, handleAgree } = useTerms();
 
   return (
     <Section
@@ -14,7 +14,7 @@ const Terms = () => {
       <Column $gap={16}>
         <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
-            <Checkbox selected={checks.agrees[0]} onClick={() => handleAgree(0)} size="small" />
+            <Checkbox selected={terms.agrees[0]} onClick={() => handleAgree(0)} size="small" />
           </S.CheckBoxWrapper>
           <Column>
             <S.TermsText>
@@ -25,7 +25,7 @@ const Terms = () => {
         </Row>
         <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
-            <Checkbox selected={checks.agrees[1]} onClick={() => handleAgree(1)} size="small" />
+            <Checkbox selected={terms.agrees[1]} onClick={() => handleAgree(1)} size="small" />
           </S.CheckBoxWrapper>
           <Column>
             <S.TermsText>
@@ -35,7 +35,7 @@ const Terms = () => {
         </Row>
         <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
-            <Checkbox selected={checks.agrees[2]} onClick={() => handleAgree(2)} size="small" />
+            <Checkbox selected={terms.agrees[2]} onClick={() => handleAgree(2)} size="small" />
           </S.CheckBoxWrapper>
           <Column>
             <S.TermsText>

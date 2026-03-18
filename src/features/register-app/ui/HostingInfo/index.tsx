@@ -2,10 +2,10 @@ import { Column, Row, Spacer } from "@/shared/styles/common";
 import Section from "@/widgets/section/ui";
 import { FilledTextField, Switch } from "@b1nd/dodam-design-system";
 import * as S from "./style";
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useHostingInfo } from "@/features/register-app/hooks/useHostingInfo";
 
 const HostingInfo = () => {
-  const { form, handleServerField, checks, handleUseServer } = useForm();
+  const { hostingInfo, handleTextForm, handleSwitch } = useHostingInfo();
 
   return (
     <Section title="호스팅 서버 정보">
@@ -15,22 +15,24 @@ const HostingInfo = () => {
             <FilledTextField
               placeholder="dodam api"
               label="서버 이름"
+              name="name"
               type="text"
-              value={form.server?.name || ""}
-              required={checks.useServer}
-              onChange={(e) => handleServerField("name", e.target.value)}
-              disabled={!checks.useServer}
+              value={hostingInfo.name}
+              required={hostingInfo.useServer}
+              onChange={handleTextForm}
+              disabled={!hostingInfo.useServer}
             />
           </Spacer>
           <Spacer>
             <FilledTextField
               placeholder="IPv4 또는 DNS"
               label="물리 서버 주소"
+              name="serverAddress"
               type="text"
-              required={checks.useServer}
-              value={form.server?.serverAddress || ""}
-              onChange={(e) => handleServerField("serverAddress", e.target.value)}
-              disabled={!checks.useServer}
+              required={hostingInfo.useServer}
+              value={hostingInfo.serverAddress}
+              onChange={handleTextForm}
+              disabled={!hostingInfo.useServer}
             />
           </Spacer>
         </Row>
@@ -39,21 +41,19 @@ const HostingInfo = () => {
             <FilledTextField
               placeholder="/api"
               label="서버 경로 ( path )"
+              name="redirectPath"
               type="text"
-              required={checks.useServer}
-              value={form.server?.redirectPath || ""}
-              onChange={(e) => handleServerField("redirectPath", e.target.value)}
-              disabled={!checks.useServer}
+              required={hostingInfo.useServer}
+              value={hostingInfo.redirectPath}
+              onChange={handleTextForm}
+              disabled={!hostingInfo.useServer}
             />
           </Spacer>
           <Spacer />
         </Row>
         <S.SwitchPrefixWrapper>
           <S.Label>서버 활성화</S.Label>
-          <Switch
-            checked={checks.useServer}
-            onChange={handleUseServer}
-          />
+          <Switch checked={hostingInfo.useServer} onChange={handleSwitch} />
         </S.SwitchPrefixWrapper>
       </Column>
     </Section>

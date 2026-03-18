@@ -6,18 +6,11 @@ import {
 import Section from "@/widgets/section/ui";
 import WithLabel from "@/widgets/with-label/ui";
 import { Column, Row, Spacer } from "@/shared/styles/common";
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useDefaultInfo } from "@/features/register-app/hooks/useDefaultInfo";
 
 const DefaultInfo = () => {
-  const {
-    form,
-    handleField,
-    icons,
-    handleIcons,
-    teamsOption,
-    team,
-    handleTeam,
-  } = useForm();
+  const { defaultInfo, teamsOption, handleTextForm, handleIcon, handleTeam } =
+    useDefaultInfo();
 
   return (
     <Section title="기본 정보">
@@ -28,9 +21,10 @@ const DefaultInfo = () => {
               placeholder="도담도담"
               label="앱 이름"
               type="text"
+              name="name"
               required
-              value={form.name}
-              onChange={(e) => handleField("name", e.target.value)}
+              value={defaultInfo.name}
+              onChange={handleTextForm}
             />
           </Spacer>
           <Spacer>
@@ -38,7 +32,7 @@ const DefaultInfo = () => {
               <Dropdown
                 items={teamsOption}
                 onSelectedItemChange={handleTeam}
-                value={team?.name || "선택하세요."}
+                value={defaultInfo.team?.name || "선택하세요."}
                 customStyle={{ width: "100%", height: "100%" }}
               />
             </WithLabel>
@@ -48,17 +42,17 @@ const DefaultInfo = () => {
           <Spacer>
             <FileInput
               label="앱 로고"
-              onChange={(e) => handleIcons("lightMode", e)}
+              onChange={(e) => handleIcon("lightMode", e)}
               required
-              value={icons.lightMode}
+              value={defaultInfo.icons.lightMode}
               accept="image/*"
             />
           </Spacer>
           <Spacer>
             <FileInput
               label="다크모드 앱 로고"
-              onChange={(e) => handleIcons("darkMode", e)}
-              value={icons.darkMode}
+              onChange={(e) => handleIcon("darkMode", e)}
+              value={defaultInfo.icons.darkMode}
               accept="image/*"
             />
           </Spacer>

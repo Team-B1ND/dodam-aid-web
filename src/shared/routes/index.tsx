@@ -35,9 +35,9 @@ const router = createBrowserRouter([
               { path: "members", element: <TeamMembersPage /> },
             ],
           },
-          { path: "temas/:id/apps", element: <RegisterApp /> },
+          { path: "teams/:id/apps", element: <RegisterApp /> },
           {
-            path: "teams/:id/:appId",
+            path: "teams/:id/apps/:appId",
             element: <AppLayout />,
             children: [
               { index: true, element: <AppDetailPage /> },

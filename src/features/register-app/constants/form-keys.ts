@@ -1,1 +1,0 @@
-export const FORM_KEYS = ["name", "subtitle", "description", "inquiryMail", "teamId", "darkIconUrl", "iconUrl", "githubReleaseUrl"] as const;

@@ -40,13 +40,24 @@ export const useEditTeam = (turnToReadMode: () => void) => {
     return true;
   };
 
+  const getChangedValue = (origin: string, current: string) => {
+    const next = current.trim();
+    return origin.trim() !== next ? next : undefined;
+  };
+
   const submit = async () => {
     const isValidated = validate();
     if (!isValidated) {
       toast.warning("필수 입력 필드를 모두 채워주세요.");
       return;
     }
-    await mutateAsync({ teamId: team.teamId, ...form });
+    await mutateAsync({
+      teamId: team.teamId,
+      description: getChangedValue(team.description, form.description),
+      githubUrl: getChangedValue(team.githubUrl, form.githubUrl),
+      iconUrl: getChangedValue(team.iconUrl, form.iconUrl),
+      name: getChangedValue(team.name, form.name),
+    });
     turnToReadMode();
   };
 

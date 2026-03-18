@@ -5,10 +5,11 @@ import AppSearch from "@/features/get-apps/ui/AppSearch";
 import { Column, Row, Spacer } from "@/shared/styles/common";
 import NoContent from "@/shared/ui/NoContent";
 import { colors, FilledButton, Plus } from "@b1nd/dodam-design-system";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AppList = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const apps = useGetAppsInTeam();
   const { query, handleQuery, filtered } = useFilterAppsByName(apps);
 
@@ -17,7 +18,7 @@ const AppList = () => {
       <Row $align="center">
         <AppSearch query={query} setQuery={handleQuery} />
         <Spacer />
-        <FilledButton size="medium" onClick={() => navigate("/apps/register")}>
+        <FilledButton size="medium" onClick={() => navigate(`${pathname}/apps`)}>
           <Plus size={18} color={colors.static.white} />
           <p style={{ marginLeft: 4 }}>애플리케이션 등록하기</p>
         </FilledButton>

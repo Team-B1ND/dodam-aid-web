@@ -2,10 +2,10 @@ import { Column, Row } from "@/shared/styles/common";
 import Section from "@/widgets/section/ui";
 import { Checkbox } from "@b1nd/dodam-design-system";
 import * as S from "./style";
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useOtherInfo } from "@/features/register-app/hooks/useOtherInfo";
 
 const OtherInfo = () => {
-  const { form, handleServerField } = useForm();
+  const { otherInfo, handleOption } = useOtherInfo();
 
   return (
     <Section title="기타 설정">
@@ -13,10 +13,8 @@ const OtherInfo = () => {
         <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
             <Checkbox
-              selected={form.server?.omitApiPrefix || false}
-              onClick={() =>
-                handleServerField("omitApiPrefix", !form.server?.omitApiPrefix)
-              }
+              selected={otherInfo.omitApiPrefix}
+              onClick={() => handleOption("omitApiPrefix")}
               size="small"
             />
           </S.CheckBoxWrapper>
@@ -28,13 +26,8 @@ const OtherInfo = () => {
         <Row $gap={8} $align="center">
           <S.CheckBoxWrapper>
             <Checkbox
-              selected={form.server?.usePushNotification || false}
-              onClick={() =>
-                handleServerField(
-                  "usePushNotification",
-                  !form.server?.usePushNotification,
-                )
-              }
+              selected={otherInfo.usePushNotification}
+              onClick={() => handleOption("usePushNotification")}
               size="small"
             />
           </S.CheckBoxWrapper>

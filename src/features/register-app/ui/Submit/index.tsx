@@ -1,9 +1,9 @@
-import { useForm } from "@/features/register-app/hooks/useForm";
+import { useSubmit } from "@/features/register-app/hooks/useSubmit";
 import { Column } from "@/shared/styles/common";
 import { FilledButton } from "@b1nd/dodam-design-system";
 
 const Submit = () => {
-  const { submit, isProcessing } = useForm();
+  const { submit, isProcessing } = useSubmit();
 
   return (
     <Column $align="end">

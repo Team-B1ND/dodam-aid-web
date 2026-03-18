@@ -31,7 +31,7 @@ export const TeamApi = {
     );
   },
 
-  async updateTeam(data: UpdateTeamReq) {
+  async updateTeam(data: Partial<UpdateTeamReq>) {
     return await apiClient.patch(`/inapp/team`, data);
   },
 

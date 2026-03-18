@@ -1,7 +1,7 @@
 import { colors, shapes, typoCss } from "@b1nd/dodam-design-system";
 import styled from "@emotion/styled";
 
-export const Container = styled.button`
+export const Container = styled.div`
   width: 100%;
   background-color: ${colors.background.surface};
   border-radius: ${shapes.extraLarge};

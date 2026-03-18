@@ -14,7 +14,7 @@ const AppItem = ({ data }: Props) => {
   const theme = useTheme();
 
   return (
-    <S.Container to={`${pathname}/${data.appId}`}>
+    <S.Container to={`${pathname}/apps/${data.appId}`}>
       <S.Logo
         src={
           theme === "dark" && data.darkIconUrl ? data.darkIconUrl : data.iconUrl
