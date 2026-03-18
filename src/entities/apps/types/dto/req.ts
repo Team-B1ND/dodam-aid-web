@@ -25,3 +25,8 @@ export interface CreateReleaseReq {
   releaseUrl: string;
   memo: string;
 }
+
+export interface ToggleReleaseReq {
+  releaseId: string;
+  enabled: boolean;
+}

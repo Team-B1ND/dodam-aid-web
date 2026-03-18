@@ -29,16 +29,12 @@ const TeamItem = ({ data }: Props) => {
         $gap={12}
         $align="center"
         onClick={(e) => e.stopPropagation()}>
-        {data.isOwner ? (
+        {data.isOwner && (
           <FilledButton
             role="assistive"
             size="small"
             onClick={() => navigate(`/teams/${data.teamId}/settings`)}>
             설정
-          </FilledButton>
-        ) : (
-          <FilledButton role="negative" size="small">
-            팀 떠나기
           </FilledButton>
         )}
       </Row>

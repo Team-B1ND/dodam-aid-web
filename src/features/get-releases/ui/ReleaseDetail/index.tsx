@@ -1,10 +1,11 @@
 import * as S from "./style";
 import WithLabel from "@/widgets/with-label/ui";
-import { Divider, Skeleton } from "@/shared/styles/common";
+import { Divider, Row, Skeleton, Spacer } from "@/shared/styles/common";
 import { useGetReleaseDetail } from "@/features/get-releases/hooks/useGetReleaseDetail";
-import { shapes } from "@b1nd/dodam-design-system";
+import { shapes, Switch } from "@b1nd/dodam-design-system";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { useToggleRelease } from "@/features/get-releases/hooks/useToggleRelease";
 
 interface Props {
   releaseId: string;
@@ -12,6 +13,7 @@ interface Props {
 
 const ReleaseDetail = ({ releaseId }: Props) => {
   const release = useGetReleaseDetail(releaseId);
+  const { toggle, isPending } = useToggleRelease(releaseId, release.enabled);
 
   return (
     <S.ContentBox>
@@ -26,6 +28,21 @@ const ReleaseDetail = ({ releaseId }: Props) => {
           </ReactMarkdown>
         </S.MarkdownContent>
       </WithLabel>
+      {release.status === "ALLOWED" && (
+        <>
+          <Divider />
+          <Row $gap={8} $align="center">
+            <Spacer />
+            <S.TermsText>릴리즈 활성 상태</S.TermsText>
+            <Switch
+              checked={release.enabled}
+              onChange={toggle}
+              size="small"
+              disabled={isPending}
+            />
+          </Row>
+        </>
+      )}
     </S.ContentBox>
   );
 };

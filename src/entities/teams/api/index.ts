@@ -32,12 +32,16 @@ export const TeamApi = {
   },
 
   async updateTeam(data: Partial<UpdateTeamReq>) {
-    return await apiClient.patch(`/inapp/team`, data);
+    return await apiClient.patch<BaseResponse<null>>(`/inapp/team`, data);
   },
 
   async deleteMember(data: DeleteMemberReq) {
     let param = "";
     data.users.forEach((u) => (param += `users=${u}`));
-    return await apiClient.delete(`/inapp/team/${data.teamId}/member?${param}`);
+    return await apiClient.delete<BaseResponse<null>>(`/inapp/team/${data.teamId}/member?${param}`);
+  },
+
+  async deleteTeam(teamId: string) {
+    return await apiClient.delete<BaseResponse<null>>(`/inapp/team/${teamId}`);
   },
 };

@@ -49,3 +49,10 @@ export const useGetReleaseDetailQuery = (releaseId: string) => {
     queryFn: () => AppApi.getReleaseById(releaseId),
   });
 };
+
+export const useGetApiKeyHistoryQuery = (appId: string) => {
+  return useSuspenseQuery({
+    queryKey: ["app", appId, "api-key"],
+    queryFn: () => AppApi.getApiKeyHistory(appId),
+  });
+};

@@ -40,3 +40,9 @@ export interface Release {
   createdAt: string;
   modifiedAt: string;
 }
+
+export interface ApiKey {
+  expiredAt: string;
+  createdAt: string;
+  isExpired: boolean;
+}

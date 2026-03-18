@@ -1,10 +1,12 @@
-import type { App, Release } from "@/entities/apps/types";
+import type { ApiKey, App, Release } from "@/entities/apps/types";
 import type {
   CreateAppReq,
   CreateReleaseReq,
+  ToggleReleaseReq,
   UpdateAppReq,
 } from "@/entities/apps/types/dto/req";
 import type {
+  ApiKeyRes,
   AppListItemRes,
   ModifyAppRes,
   ReleaseDetail,
@@ -56,5 +58,28 @@ export const AppApi = {
 
   async registerRelease(data: CreateReleaseReq) {
     return await apiClient.post("/inapp/app/release", data);
+  },
+
+  async issueApiKey(appId: string) {
+    return await apiClient.post<BaseResponse<ApiKeyRes>>(
+      `/inapp/app/${appId}/api-key`,
+    );
+  },
+
+  async getApiKeyHistory(appId: string) {
+    return await apiClient.get<BaseResponse<ApiKey[]>>(
+      `/inapp/app/${appId}/api-key`,
+    );
+  },
+
+  async toggleRelease(data: ToggleReleaseReq) {
+    return await apiClient.patch<BaseResponse<null>>(
+      `/inapp/app/release/toggle`,
+      data,
+    );
+  },
+
+  async deleteApp(appId: string) {
+    return await apiClient.delete<BaseResponse<null>>(`/inapp/app/${appId}`);
   },
 };

@@ -11,4 +11,9 @@ export type AppListItemRes = Omit<App, "active" | "releases" | "server"> & {
 
 export type ReleaseDetail = Release & {
   releaseNote?: string;
+};
+
+export interface ApiKeyRes {
+  apiKey: string;
+  expiredAt: string;
 }

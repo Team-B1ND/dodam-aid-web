@@ -1,8 +1,9 @@
 import { Column, Row, Spacer } from "@/shared/styles/common";
 import * as S from "./style";
-import { Switch } from "@b1nd/dodam-design-system";
+import { Dialog, FilledButton, Switch, useOverlay } from "@b1nd/dodam-design-system";
 import { useEditOptions } from "@/features/edit-app/hooks/useEditOptions";
 import { useEditServer } from "@/features/edit-app/hooks/useEditServer";
+import { useDeleteApp } from "@/features/edit-app/hooks/useDeleteApp";
 
 interface Props {
   isEditMode: boolean;
@@ -11,6 +12,35 @@ interface Props {
 const Options = ({ isEditMode }: Props) => {
   const { options, handleOption } = useEditOptions();
   const { server } = useEditServer();
+  const { deleteSubmit, isPending } = useDeleteApp();
+  const { open } = useOverlay();
+
+  const handleOpenDeleteDialog = () => {
+    open(({ close, exit, isOpen }) => (
+      <Dialog
+        open={isOpen}
+        title="앱을 삭제할까요?"
+        description="삭제한 앱은 복구할 수 없어요.">
+        <Dialog.FilledButton
+          onClick={() => {
+            close();
+            exit();
+          }}
+          role="assistive">
+          취소
+        </Dialog.FilledButton>
+        <Dialog.FilledButton
+          onClick={async () => {
+            await deleteSubmit();
+            close();
+            exit();
+          }}
+          role="negative">
+          삭제
+        </Dialog.FilledButton>
+      </Dialog>
+    ));
+  };
 
   return (
     <Column $gap={24}>
@@ -35,6 +65,15 @@ const Options = ({ isEditMode }: Props) => {
           disabled={!isEditMode}
         />
       </Row>
+      {isEditMode && (
+        <FilledButton
+          size="small"
+          role="negative"
+          onClick={handleOpenDeleteDialog}
+          disabled={isPending}>
+          {isPending ? "앱 삭제 중..." : "앱 삭제하기"}
+        </FilledButton>
+      )}
     </Column>
   );
 };

@@ -22,3 +22,7 @@ export const MarkdownContent = styled.div`
   width: 100%;
   ${markdownStyle}
 `;
+
+export const TermsText = styled.p`
+  ${typoCss("Body2", "Medium")};
+`;
