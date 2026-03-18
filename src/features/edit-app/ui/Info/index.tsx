@@ -41,6 +41,15 @@ const Info = ({ isEditMode }: Props) => {
           </Row>
         </WithLabel>
         <FilledTextField
+          value={info.subtitle}
+          name="subtitle"
+          onChange={handleTextForm}
+          type="text"
+          label="앱 부제목"
+          placeholder="앱 부제목을 입력해 주세요."
+          required
+        />
+        <FilledTextField
           value={info.description}
           name="description"
           onChange={handleTextForm}
@@ -74,6 +83,9 @@ const Info = ({ isEditMode }: Props) => {
             </Column>
           )}
         </Row>
+      </WithLabel>
+      <WithLabel label="앱 부제목">
+        <S.Value>{info.subtitle}</S.Value>
       </WithLabel>
       <WithLabel label="앱 설명">
         <S.Value>{info.description || "앱 설명이 없습니다."}</S.Value>

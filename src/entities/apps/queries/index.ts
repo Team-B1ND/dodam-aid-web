@@ -30,7 +30,7 @@ export const useGetReleasesQuery = (
   options: { keyword?: string; date?: string },
 ) => {
   return useSuspenseInfiniteQuery({
-    queryKey: ["releases", appId, options.keyword, options.date],
+    queryKey: ["app", "release", appId, options.keyword, options.date],
     queryFn: ({ pageParam }) =>
       AppApi.getReleases(appId, { ...options, page: pageParam }),
 

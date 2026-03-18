@@ -14,6 +14,7 @@ export const useEditInfo = () => {
       iconUrl: app.iconUrl,
       inquiryMail: app.inquiryMail,
       darkIconUrl: app.darkIconUrl,
+      subtitle: app.subtitle,
     });
   }, [app]);
 
@@ -41,6 +42,6 @@ export const useEditInfo = () => {
     handleIcon,
     handleTextForm,
     isLoading,
-    removeIcon
+    removeIcon,
   };
 };

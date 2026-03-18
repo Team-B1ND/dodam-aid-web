@@ -9,6 +9,7 @@ import { useOtherInfoStore } from "@/features/register-app/stores/other-info";
 import { useTermsStore } from "@/features/register-app/stores/terms";
 import { useGetTeamDetail } from "@/features/get-team-detail/hooks/useGetTeamDetail";
 import { resetAllSections } from "@/features/register-app/utils/reset-all-sections";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useSubmit = () => {
   const { defaultInfo } = useDefaultInfoStore();
@@ -18,8 +19,10 @@ export const useSubmit = () => {
   const { terms } = useTermsStore();
   const toast = useToast();
   const { upload, isLoading } = useUploads();
-  const { mutateAsync, isPending } = useRegisterAppMutation(resetAllSections);
+  const { mutateAsync, isPending } = useRegisterAppMutation();
   const team = useGetTeamDetail();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const submit = async () => {
     if (
@@ -57,7 +60,7 @@ export const useSubmit = () => {
 
     if (!iconUrl) return;
 
-    await mutateAsync({
+    const result = await mutateAsync({
       name: defaultInfo.name,
       subtitle: detailInfo.subtitle,
       description: detailInfo.description,
@@ -76,6 +79,10 @@ export const useSubmit = () => {
           }
         : undefined,
     });
+
+    resetAllSections();
+
+    navigate(`${pathname}/${result.data.data.appId}`);
   };
 
   return {

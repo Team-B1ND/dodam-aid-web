@@ -9,6 +9,7 @@ import {
   FilledButton,
   PickerTrigger,
 } from "@b1nd/dodam-design-system";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ReleaseList = () => {
   const {
@@ -21,12 +22,13 @@ const ReleaseList = () => {
     hasNextPage,
     isFetchingNextPage,
   } = useGetReleases();
+  const navigate = useNavigate();
+  const { id, appId } = useParams<{ id: string; appId: string }>();
 
   return (
     <Column $gap={32}>
-      <Row $align="center">
+      <Row $align="center" $gap={12}>
         <ReleaseSearch query={keyword} setQuery={setKeyword} />
-        <Spacer />
         <PickerTrigger
           content={({ onClose }) => (
             <DatePicker.Content
@@ -35,10 +37,16 @@ const ReleaseList = () => {
               onClose={onClose}
             />
           )}>
-          <FilledButton role="assistive">
+          <FilledButton role="assistive" size="large">
             {date ? padDate(date) : "YYYY-MM-DD"}
           </FilledButton>
         </PickerTrigger>
+        <Spacer />
+        <FilledButton
+          size="large"
+          onClick={() => navigate(`/teams/${id}/apps/${appId}/releases/new`)}>
+          신규 릴리즈 등록
+        </FilledButton>
       </Row>
       <Column $gap={16}>
         {releases.length ? (

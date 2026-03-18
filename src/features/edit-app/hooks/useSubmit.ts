@@ -38,7 +38,7 @@ export const useSubmit = (finishEdit: () => void) => {
     await mutateAsync({
       appId: app.appId,
       name: app.name,
-      subtitle: app.subtitle,
+      subtitle: info.subtitle,
       description: info.description,
       iconUrl: info.iconUrl,
       darkIconUrl: info.darkIconUrl,

@@ -33,9 +33,8 @@ export const useUpdateTeamMutation = () => {
 
   return useMutation({
     mutationFn: TeamApi.updateTeam,
-    onSuccess: async (res, req) => {
-      await queryClient.refetchQueries({ queryKey: ["team", "me"] });
-      await queryClient.refetchQueries({ queryKey: ["team", req.teamId] });
+    onSuccess: async (res) => {
+      await queryClient.refetchQueries({ queryKey: ["team"] });
       toast.success(res.data.message, TOSAT_CONFIG);
     },
     onError: (e: ErrorResponse) => {
@@ -53,11 +52,10 @@ export const useDeleteMemberMutation = () => {
 
   return useMutation({
     mutationFn: TeamApi.deleteMember,
-    onSuccess: async (res, req) => {
+    onSuccess: async (res) => {
       await queryClient.refetchQueries({
-        queryKey: ["team", req.teamId, "member"],
+        queryKey: ["team"],
       });
-      await queryClient.refetchQueries({ queryKey: ["team", req.teamId] });
       toast.success(res.data.message, TOSAT_CONFIG);
     },
     onError: (e: ErrorResponse) => {

@@ -10,9 +10,18 @@ export type CreateAppReq = Omit<
   >;
 };
 
-export type UpdateAppReq = Omit<App, "active" | "releases" | "server" | "githubReleaseUrl" | "teamId"> & {
+export type UpdateAppReq = Omit<
+  App,
+  "active" | "releases" | "server" | "githubReleaseUrl" | "teamId"
+> & {
   server?: Omit<
     ServerConfig,
     "prefixLevel" | "enabled" | "status" | "denyResult"
   >;
 };
+
+export interface CreateReleaseReq {
+  appId: string;
+  releaseUrl: string;
+  memo: string;
+}

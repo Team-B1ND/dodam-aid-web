@@ -5,6 +5,7 @@ interface Info {
   darkIconUrl?: string;
   description: string;
   inquiryMail: string;
+  subtitle: string;
 }
 
 interface State {
@@ -17,6 +18,7 @@ export const useInfoStore = create<State>((set) => ({
     iconUrl: "",
     description: "",
     inquiryMail: "",
+    subtitle: ""
   },
   setInfo: (info) => set({ info }),
 }));

@@ -1,5 +1,9 @@
 import type { App, Release } from "@/entities/apps/types";
-import type { CreateAppReq, UpdateAppReq } from "@/entities/apps/types/dto/req";
+import type {
+  CreateAppReq,
+  CreateReleaseReq,
+  UpdateAppReq,
+} from "@/entities/apps/types/dto/req";
 import type {
   AppListItemRes,
   ModifyAppRes,
@@ -41,5 +45,9 @@ export const AppApi = {
     return await apiClient.get<BaseResponse<PageResponse<Release>>>(
       `/inapp/app/${appId}/release?size=10&page=${options.page}${options.keyword ? `&keyword=${options.keyword}` : ""}${options.date ? `&date=${options.date}` : ""}`,
     );
+  },
+
+  async registerRelease(data: CreateReleaseReq) {
+    return await apiClient.post("/inapp/app/release", data);
   },
 };
