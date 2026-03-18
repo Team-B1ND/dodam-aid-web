@@ -46,3 +46,25 @@ export const useUpdateTeamMutation = () => {
     },
   });
 };
+
+export const useDeleteMemberMutation = () => {
+  const toast = useToast();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: TeamApi.deleteMember,
+    onSuccess: async (res, req) => {
+      await queryClient.refetchQueries({
+        queryKey: ["team", req.teamId, "member"],
+      });
+      await queryClient.refetchQueries({ queryKey: ["team", req.teamId] });
+      toast.success(res.data.message, TOSAT_CONFIG);
+    },
+    onError: (e: ErrorResponse) => {
+      toast.error(
+        e.response?.data.message || "요청을 처리하지 못했어요.",
+        TOSAT_CONFIG,
+      );
+    },
+  });
+};

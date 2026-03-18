@@ -13,7 +13,9 @@ const Info = ({ turnToEditMode }: Props) => {
 
   return (
     <Column $gap={24}>
-      <FilledButton onClick={turnToEditMode}>정보 수정하기</FilledButton>
+      {team.isOwner && (
+        <FilledButton onClick={turnToEditMode}>정보 수정하기</FilledButton>
+      )}
       <WithLabel label="팀 로고">
         <S.Icon src={team.iconUrl || undefined} />
       </WithLabel>
@@ -33,7 +35,6 @@ const Info = ({ turnToEditMode }: Props) => {
 Info.Skeleton = () => {
   return (
     <Column $gap={24}>
-      <FilledButton onClick={() => {}}>정보 수정하기</FilledButton>
       <WithLabel label="팀 로고">
         <Skeleton $height="84px" $width="84px" $radius={shapes.small} />
       </WithLabel>

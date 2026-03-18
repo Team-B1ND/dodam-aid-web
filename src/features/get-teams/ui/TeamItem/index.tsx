@@ -3,14 +3,17 @@ import * as S from "./style";
 import { Column, Row, Skeleton, Spacer } from "@/shared/styles/common";
 import { FilledButton, shapes } from "@b1nd/dodam-design-system";
 import Role from "@/features/get-teams/ui/Role";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   data: Team;
 }
 
 const TeamItem = ({ data }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <S.Container to={`/teams/${data.teamId}`}>
+    <S.Container onClick={() => navigate(`/teams/${data.teamId}`)}>
       <S.Logo src={data.iconUrl} />
       <Spacer>
         <Column $align="start" $gap={4}>
@@ -21,15 +24,23 @@ const TeamItem = ({ data }: Props) => {
           <S.Description>{data.description}</S.Description>
         </Column>
       </Spacer>
-      <Row $size="fit" $gap={12} $align="center">
-        {data.isOwner && (
-          <FilledButton role="assistive" size="small">
+      <Row
+        $size="fit"
+        $gap={12}
+        $align="center"
+        onClick={(e) => e.stopPropagation()}>
+        {data.isOwner ? (
+          <FilledButton
+            role="assistive"
+            size="small"
+            onClick={() => navigate(`/teams/${data.teamId}/settings`)}>
             설정
           </FilledButton>
+        ) : (
+          <FilledButton role="negative" size="small">
+            팀 떠나기
+          </FilledButton>
         )}
-        <FilledButton role="negative" size="small">
-          팀 떠나기
-        </FilledButton>
       </Row>
     </S.Container>
   );
@@ -37,7 +48,7 @@ const TeamItem = ({ data }: Props) => {
 
 TeamItem.Skeleton = () => {
   return (
-    <S.Container to={`/teams`}>
+    <S.Container>
       <Skeleton $width="72px" $height="72px" $radius={shapes.large} />
       <Spacer>
         <Column $align="start" $gap={4}>
@@ -45,8 +56,7 @@ TeamItem.Skeleton = () => {
           <Skeleton $width="260px" $height="24px" $radius={shapes.large} />
         </Column>
       </Spacer>
-      <Row $size="fit" $gap={12} $align="center">
-        <Skeleton $width="48px" $height="32px" $radius={shapes.large} />
+      <Row $size="fit">
         <Skeleton $width="74px" $height="32px" $radius={shapes.large} />
       </Row>
     </S.Container>

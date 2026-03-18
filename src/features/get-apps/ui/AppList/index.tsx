@@ -3,6 +3,7 @@ import { useGetAppsInTeam } from "@/features/get-apps/hooks/useGetAppsInTeam";
 import AppItem from "@/features/get-apps/ui/AppItem";
 import AppSearch from "@/features/get-apps/ui/AppSearch";
 import { Column, Row, Spacer } from "@/shared/styles/common";
+import NoContent from "@/shared/ui/NoContent";
 import { colors, FilledButton, Plus } from "@b1nd/dodam-design-system";
 import { useNavigate } from "react-router-dom";
 
@@ -21,9 +22,11 @@ const AppList = () => {
           <p style={{ marginLeft: 4 }}>애플리케이션 등록하기</p>
         </FilledButton>
       </Row>
-      {filtered.map((app) => (
-        <AppItem data={app} key={app.appId} />
-      ))}
+      {filtered.length ? (
+        filtered.map((app) => <AppItem data={app} key={app.appId} />)
+      ) : (
+        <NoContent text="등록된 앱이 없습니다." />
+      )}
     </Column>
   );
 };

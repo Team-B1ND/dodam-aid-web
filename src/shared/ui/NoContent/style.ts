@@ -6,5 +6,5 @@ export const Text = styled.div`
   text-align: center;
   color: ${colors.text.disabled};
   ${typoCss("Body1", "Medium")};
-  margin-top: 32px;
+  padding: 32px 0px;
 `;

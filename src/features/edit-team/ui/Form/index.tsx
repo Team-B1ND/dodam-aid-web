@@ -53,6 +53,15 @@ const Form = ({ turnToReadMode }: Props) => {
         placeholder="깃허브 주소를 입력해 주세요."
         required
       />
+      <Row>
+        <FilledButton
+          role="negative"
+          size="small"
+          onClick={submit}
+          disabled={isLoading || isPending}>
+          {isPending ? "삭제 중..." : "팀 삭제하기"}
+        </FilledButton>
+      </Row>
     </Column>
   );
 };

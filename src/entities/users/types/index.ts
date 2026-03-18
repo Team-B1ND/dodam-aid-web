@@ -16,3 +16,10 @@ export interface User {
   };
   createdAt: string;
 }
+
+export interface Member {
+  userId: string;
+  name: string;
+  profileIamge: string;
+  isOwner: boolean;
+}
