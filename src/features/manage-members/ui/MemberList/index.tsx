@@ -1,11 +1,17 @@
 import MemberSearch from "@/features/manage-members/ui/MemberSearch";
 import { Column, Row, Spacer } from "@/shared/styles/common";
-import { Checkbox, FilledButton } from "@b1nd/dodam-design-system";
+import {
+  Checkbox,
+  Dialog,
+  FilledButton,
+  useOverlay,
+} from "@b1nd/dodam-design-system";
 import { useState } from "react";
 import * as S from "./style";
 import MemberItem from "@/features/manage-members/ui/MemberItem";
 import { useManageMember } from "@/features/manage-members/hooks/useManageMember";
 import NoContent from "@/shared/ui/NoContent";
+import { useMakeOwner } from "@/features/manage-members/hooks/useMakeOwner";
 
 const MemberList = () => {
   const [query, setQuery] = useState("");
@@ -24,6 +30,34 @@ const MemberList = () => {
   const filtered = member.filter((m) =>
     m.name.toLowerCase().includes(query.toLowerCase()),
   );
+  const { makeOwner, isPending: isMakingOwner } = useMakeOwner(selected[0]);
+  const { open } = useOverlay();
+
+  const handleOpenMakeOwnerDialog = () => {
+    open(({ close, exit, isOpen }) => (
+      <Dialog
+        open={isOpen}
+        title="소유자를 변경할까요?"
+        description="소유자를 넘기면 되돌릴 수 없어요.">
+        <Dialog.FilledButton
+          onClick={() => {
+            close();
+            exit();
+          }}
+          role="assistive">
+          취소
+        </Dialog.FilledButton>
+        <Dialog.FilledButton
+          onClick={async () => {
+            await makeOwner();
+            close();
+            exit();
+          }}>
+          확인
+        </Dialog.FilledButton>
+      </Dialog>
+    ));
+  };
 
   return (
     <Column $gap={12}>
@@ -34,14 +68,14 @@ const MemberList = () => {
           <>
             <FilledButton
               role="negative"
-              disabled={selected.length <= 0 || isPending}
+              disabled={selected.length <= 0 || isPending || isMakingOwner}
               onClick={submit}>
               {isPending ? "처리 중..." : "내보내기"}
             </FilledButton>
             <FilledButton
-              disabled={selected.length !== 1 || isPending}
-              onClick={submit}>
-              {isPending ? "처리 중..." : "소유자로 변경"}
+              disabled={selected.length !== 1 || isPending || isMakingOwner}
+              onClick={handleOpenMakeOwnerDialog}>
+              {isMakingOwner ? "처리 중..." : "소유자로 변경"}
             </FilledButton>
           </>
         )}

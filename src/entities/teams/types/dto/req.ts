@@ -8,3 +8,8 @@ export interface DeleteMemberReq {
   teamId: string;
   users: string[];
 }
+
+export interface UpdateOwnerReq {
+  teamId: string;
+  userPublicId: string;
+}

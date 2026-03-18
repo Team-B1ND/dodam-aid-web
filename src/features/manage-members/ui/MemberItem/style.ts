@@ -1,4 +1,4 @@
-import { colors, shapes, typoCss } from "@b1nd/dodam-design-system";
+import { colors, typoCss } from "@b1nd/dodam-design-system";
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const ProfileImage = styled.img`
   width: 64px;
   height: 64px;
-  border-radius: ${shapes.large};
+  border-radius: 9999px;
 `;
 
 export const CheckboxWrapper = styled.div`

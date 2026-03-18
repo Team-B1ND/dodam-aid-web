@@ -1,6 +1,6 @@
 import type { Member } from "@/entities/users/types";
 import * as S from "./style";
-import { Checkbox, shapes } from "@b1nd/dodam-design-system";
+import { Avatar, Checkbox, shapes } from "@b1nd/dodam-design-system";
 import { Column, Skeleton, Spacer } from "@/shared/styles/common";
 
 interface Props {
@@ -17,7 +17,11 @@ const MemberItem = ({ data, onClick, isSelected }: Props) => {
           <Checkbox selected={isSelected} onClick={onClick} size="small" />
         )}
       </S.CheckboxWrapper>
-      <S.ProfileImage src={data.profileIamge} />
+      {data.profileIamge ? (
+        <S.ProfileImage src={data.profileIamge} />
+      ) : (
+        <Avatar size={64} />
+      )}
       <Spacer>
         <Column>
           <S.Name>{data.name}</S.Name>
@@ -31,7 +35,7 @@ const MemberItem = ({ data, onClick, isSelected }: Props) => {
 MemberItem.Skeleton = () => {
   return (
     <S.Container>
-      <Skeleton $width="64px" $height="64px" $radius={shapes.large} />
+      <Skeleton $width="64px" $height="64px" $radius="9999px" />
       <Spacer>
         <Column $gap={4}>
           <Skeleton $width="48px" $height="24px" $radius={shapes.large} />

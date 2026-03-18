@@ -2,6 +2,7 @@ import type { Team } from "@/entities/teams/types";
 import type {
   CreateTeamReq,
   DeleteMemberReq,
+  UpdateOwnerReq,
   UpdateTeamReq,
 } from "@/entities/teams/types/dto/req";
 import type { CreateTeamRes } from "@/entities/teams/types/dto/res";
@@ -44,4 +45,8 @@ export const TeamApi = {
   async deleteTeam(teamId: string) {
     return await apiClient.delete<BaseResponse<null>>(`/inapp/team/${teamId}`);
   },
+
+  async makeOwner(data: UpdateOwnerReq) {
+    return await apiClient.patch<BaseResponse<null>>(`/inapp/team/owner`, data);
+  }
 };
