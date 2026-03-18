@@ -1,5 +1,5 @@
 import type { Release } from "@/entities/apps/types";
-import { Column, Divider, Row, Skeleton, Spacer } from "@/shared/styles/common";
+import { Column, Row, Skeleton, Spacer } from "@/shared/styles/common";
 import * as S from "./style";
 import { formatDate } from "@/shared/utils/format-date";
 import {
@@ -11,8 +11,8 @@ import {
   shapes,
   XmarkCircle,
 } from "@b1nd/dodam-design-system";
-import WithLabel from "@/widgets/with-label/ui";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import ReleaseDetail from "@/features/get-releases/ui/ReleaseDetail";
 
 interface Props {
   data: Release;
@@ -47,15 +47,9 @@ const ReleaseItem = ({ data }: Props) => {
         </Row>
       </S.Container>
       {isOpen && (
-        <S.ContentBox>
-          <WithLabel label="메모">
-            <S.Content>{data.memo}</S.Content>
-          </WithLabel>
-          <Divider />
-          <WithLabel label="릴리즈 노트">
-            <S.Content>{data.releaseNote}</S.Content>
-          </WithLabel>
-        </S.ContentBox>
+        <Suspense fallback={<ReleaseDetail.Skeleton />}>
+          <ReleaseDetail releaseId={data.releaseId} />
+        </Suspense>
       )}
     </Column>
   );
@@ -64,10 +58,10 @@ const ReleaseItem = ({ data }: Props) => {
 ReleaseItem.Skeleton = () => {
   return (
     <Row $gap={8}>
-      <Skeleton $width="24px" $height="24px" $radius={shapes.medium} />
+      <Skeleton $width="24px" $height="24px" $radius={shapes.small} />
       <Column $gap={4} $size="fit">
-        <Skeleton $width="132px" $height="24px" $radius={shapes.medium} />
-        <Skeleton $width="72px" $height="24px" $radius={shapes.medium} />
+        <Skeleton $width="132px" $height="24px" $radius={shapes.small} />
+        <Skeleton $width="72px" $height="24px" $radius={shapes.small} />
       </Column>
       <Spacer />
       <Row $align="center" $size="fit">

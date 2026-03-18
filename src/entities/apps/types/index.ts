@@ -33,7 +33,6 @@ export interface Release {
   releaseId: string;
   releaseUrl: string;
   memo: string;
-  releaseNote?: string;
   denyResult: string;
   status: ReleaseStatus;
   enabled: boolean;

@@ -30,7 +30,7 @@ export const useGetReleasesQuery = (
   options: { keyword?: string; date?: string },
 ) => {
   return useSuspenseInfiniteQuery({
-    queryKey: ["app", "release", appId, options.keyword, options.date],
+    queryKey: ["app", appId, "release", options.keyword, options.date],
     queryFn: ({ pageParam }) =>
       AppApi.getReleases(appId, { ...options, page: pageParam }),
 
@@ -40,5 +40,12 @@ export const useGetReleasesQuery = (
       if (!lastPage.data.data.hasNext) return undefined;
       return lastPageParam + 1;
     },
+  });
+};
+
+export const useGetReleaseDetailQuery = (releaseId: string) => {
+  return useSuspenseQuery({
+    queryKey: ["app", "release", releaseId],
+    queryFn: () => AppApi.getReleaseById(releaseId),
   });
 };

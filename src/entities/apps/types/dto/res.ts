@@ -1,4 +1,4 @@
-import type { App, ReleaseStatus } from "@/entities/apps/types";
+import type { App, Release, ReleaseStatus } from "@/entities/apps/types";
 
 export interface ModifyAppRes {
   appId: string;
@@ -9,3 +9,6 @@ export type AppListItemRes = Omit<App, "active" | "releases" | "server"> & {
   releaseStatus: ReleaseStatus;
 };
 
+export type ReleaseDetail = Release & {
+  releaseNote?: string;
+}

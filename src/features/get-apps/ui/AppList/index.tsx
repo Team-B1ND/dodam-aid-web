@@ -26,7 +26,7 @@ const AppList = () => {
       {filtered.length ? (
         filtered.map((app) => <AppItem data={app} key={app.appId} />)
       ) : (
-        <NoContent text="등록된 앱이 없습니다." />
+        <NoContent text="등록된 앱이 없어요." />
       )}
     </Column>
   );

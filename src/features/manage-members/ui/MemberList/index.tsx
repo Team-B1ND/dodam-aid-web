@@ -74,7 +74,7 @@ const MemberList = () => {
             />
           ))
         ) : (
-          <NoContent text="팀에 등록된 팀원이 없습니다." />
+          <NoContent text="팀에 등록된 팀원이 없어요." />
         )}
       </S.List>
     </Column>

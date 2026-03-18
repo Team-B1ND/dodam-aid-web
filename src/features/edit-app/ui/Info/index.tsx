@@ -88,10 +88,10 @@ const Info = ({ isEditMode }: Props) => {
         <S.Value>{info.subtitle}</S.Value>
       </WithLabel>
       <WithLabel label="앱 설명">
-        <S.Value>{info.description || "앱 설명이 없습니다."}</S.Value>
+        <S.Value>{info.description || "앱 설명이 없어요.."}</S.Value>
       </WithLabel>
       <WithLabel label="문의 메일 주소">
-        <S.Value>{info.inquiryMail || "문의 메일이 없습니다."}</S.Value>
+        <S.Value>{info.inquiryMail || "문의 메일이 없어요."}</S.Value>
       </WithLabel>
     </Column>
   );

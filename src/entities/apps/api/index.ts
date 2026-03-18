@@ -7,6 +7,7 @@ import type {
 import type {
   AppListItemRes,
   ModifyAppRes,
+  ReleaseDetail,
 } from "@/entities/apps/types/dto/res";
 import { apiClient } from "@/shared/libs/api-client";
 import type { BaseResponse } from "@/shared/types/base-response";
@@ -44,6 +45,12 @@ export const AppApi = {
   ) {
     return await apiClient.get<BaseResponse<PageResponse<Release>>>(
       `/inapp/app/${appId}/release?size=10&page=${options.page}${options.keyword ? `&keyword=${options.keyword}` : ""}${options.date ? `&date=${options.date}` : ""}`,
+    );
+  },
+
+  async getReleaseById(releaseId: string) {
+    return await apiClient.get<BaseResponse<ReleaseDetail>>(
+      `/inapp/app/release/${releaseId}`,
     );
   },
 

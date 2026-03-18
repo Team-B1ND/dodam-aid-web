@@ -52,9 +52,9 @@ export const useRegisterReleaseMutation = () => {
 
   return useMutation({
     mutationFn: AppApi.registerRelease,
-    onSuccess: async (res) => {
+    onSuccess: async (res, req) => {
       await queryClient.refetchQueries({
-        queryKey: ["app", "release"],
+        queryKey: ["app", req.appId, "release"],
       });
       toast.success(res.data.message, TOSAT_CONFIG);
     },
