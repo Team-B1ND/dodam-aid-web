@@ -13,7 +13,6 @@ import AppReleasePage from "@/pages/AppRelease";
 import TeamSettings from "@/pages/TeamSettings";
 import TeamMembersPage from "@/pages/TeamMembers";
 import RegisterReleasePage from "@/pages/RegisterRelease";
-import AppApiKeyPage from "@/pages/AppApiKey";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +44,6 @@ const router = createBrowserRouter([
               { index: true, element: <AppDetailPage /> },
               { path: "releases", element: <AppReleasePage /> },
               { path: "releases/new", element: <RegisterReleasePage /> },
-              { path: "openapi", element: <AppApiKeyPage /> },
             ],
           },
         ],

@@ -9,16 +9,6 @@ interface Params {
     description: string;
     inquiryMail: string;
   };
-  hostingInfo: {
-    useServer: boolean;
-    name: string;
-    serverAddress: string;
-    redirectPath: string;
-  };
-  otherInfo: {
-    omitApiPrefix: boolean;
-    usePushNotification: boolean;
-  };
   terms: {
     agrees: [boolean, boolean, boolean];
   };
@@ -27,8 +17,6 @@ interface Params {
 export const isFilled = ({
   defaultInfo,
   detailInfo,
-  hostingInfo,
-  otherInfo,
   terms,
 }: Params) => {
   const hasDefaultValue =
@@ -42,22 +30,11 @@ export const isFilled = ({
     !!detailInfo.description.trim() ||
     !!detailInfo.inquiryMail.trim();
 
-  const hasHostingValue =
-    hostingInfo.useServer ||
-    !!hostingInfo.name.trim() ||
-    !!hostingInfo.serverAddress.trim() ||
-    !!hostingInfo.redirectPath.trim();
-
-  const hasOtherValue =
-    otherInfo.omitApiPrefix || otherInfo.usePushNotification;
-
   const hasAgreesValue = terms.agrees.some((agree) => agree);
 
   return (
     hasDefaultValue ||
     hasDetailValue ||
-    hasHostingValue ||
-    hasOtherValue ||
     hasAgreesValue
   );
 };

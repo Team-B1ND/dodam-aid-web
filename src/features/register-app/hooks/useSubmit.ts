@@ -4,8 +4,6 @@ import { useUploads } from "@/shared/hooks/useUploads";
 import { useToast } from "@b1nd/dodam-design-system";
 import { useDefaultInfoStore } from "@/features/register-app/stores/default-info";
 import { useDetailInfoStore } from "@/features/register-app/stores/detail-info";
-import { useHostingInfoStore } from "@/features/register-app/stores/hosting-info";
-import { useOtherInfoStore } from "@/features/register-app/stores/other-info";
 import { useTermsStore } from "@/features/register-app/stores/terms";
 import { useGetTeamDetail } from "@/features/get-team-detail/hooks/useGetTeamDetail";
 import { resetAllSections } from "@/features/register-app/utils/reset-all-sections";
@@ -14,8 +12,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 export const useSubmit = () => {
   const { defaultInfo } = useDefaultInfoStore();
   const { detailInfo } = useDetailInfoStore();
-  const { hostingInfo } = useHostingInfoStore();
-  const { otherInfo } = useOtherInfoStore();
   const { terms } = useTermsStore();
   const toast = useToast();
   const { upload, isLoading } = useUploads();
@@ -44,16 +40,6 @@ export const useSubmit = () => {
       return;
     }
 
-    if (
-      hostingInfo.useServer &&
-      (!hostingInfo.name.trim() ||
-        !hostingInfo.serverAddress.trim() ||
-        !hostingInfo.redirectPath.trim())
-    ) {
-      toast.warning("필수 입력 필드를 모두 채워주세요.", TOSAT_CONFIG);
-      return;
-    }
-
     const iconUrl = await upload(defaultInfo.icons.lightMode);
     const darkIconUrl =
       defaultInfo.icons.darkMode && (await upload(defaultInfo.icons.darkMode));
@@ -69,15 +55,6 @@ export const useSubmit = () => {
       iconUrl,
       darkIconUrl: darkIconUrl || undefined,
       githubReleaseUrl: detailInfo.githubReleaseUrl,
-      server: hostingInfo.useServer
-        ? {
-            name: hostingInfo.name,
-            serverAddress: hostingInfo.serverAddress,
-            redirectPath: hostingInfo.redirectPath,
-            omitApiPrefix: otherInfo.omitApiPrefix,
-            usePushNotification: otherInfo.usePushNotification,
-          }
-        : undefined,
     });
 
     resetAllSections();

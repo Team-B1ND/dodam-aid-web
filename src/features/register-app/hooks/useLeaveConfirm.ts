@@ -1,7 +1,5 @@
 import { useDefaultInfoStore } from "@/features/register-app/stores/default-info";
 import { useDetailInfoStore } from "@/features/register-app/stores/detail-info";
-import { useHostingInfoStore } from "@/features/register-app/stores/hosting-info";
-import { useOtherInfoStore } from "@/features/register-app/stores/other-info";
 import { useTermsStore } from "@/features/register-app/stores/terms";
 import { isFilled } from "@/features/register-app/utils/is-filled";
 import { useEffect } from "react";
@@ -10,15 +8,11 @@ import { useBlocker } from "react-router-dom";
 const getCurrentFormState = () => {
   const currentDefaultInfo = useDefaultInfoStore.getState().defaultInfo;
   const currentDetailInfo = useDetailInfoStore.getState().detailInfo;
-  const currentHostingInfo = useHostingInfoStore.getState().hostingInfo;
-  const currentOtherInfo = useOtherInfoStore.getState().otherInfo;
   const currentTerms = useTermsStore.getState().terms;
 
   return {
     defaultInfo: currentDefaultInfo,
     detailInfo: currentDetailInfo,
-    hostingInfo: currentHostingInfo,
-    otherInfo: currentOtherInfo,
     terms: currentTerms,
   };
 };

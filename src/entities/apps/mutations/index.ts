@@ -67,27 +67,6 @@ export const useRegisterReleaseMutation = () => {
   });
 };
 
-export const useIssueApiKeyMutation = () => {
-  const toast = useToast();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: AppApi.issueApiKey,
-    onSuccess: async (res, req) => {
-      await queryClient.refetchQueries({
-        queryKey: ["app", req, "api-key"],
-      });
-      toast.success(res.data.message, TOSAT_CONFIG);
-    },
-    onError: (e: ErrorResponse) => {
-      toast.error(
-        e.response?.data.message || "요청을 처리하지 못했어요.",
-        TOSAT_CONFIG,
-      );
-    },
-  });
-};
-
 export const useToggleReleaseMutation = () => {
   const toast = useToast();
   const queryClient = useQueryClient();

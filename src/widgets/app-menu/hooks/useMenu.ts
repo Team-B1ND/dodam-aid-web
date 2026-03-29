@@ -7,7 +7,7 @@ export const useMenu = () => {
 
   const move = (index: number) => {
     navigate(
-      `/${tokens[0]}/${tokens[1]}/${tokens[2]}/${tokens[3]}/${tokens[4]}${index === 1 ? "/releases" : index === 2 ? "/openapi" : ""}`,
+      `/${tokens[0]}/${tokens[1]}/${tokens[2]}/${tokens[3]}/${tokens[4]}${index === 1 ? "/releases" : ""}`,
     );
   };
 

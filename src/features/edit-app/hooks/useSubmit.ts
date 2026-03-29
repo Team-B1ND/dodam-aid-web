@@ -1,7 +1,5 @@
 import { useUpdateAppMutation } from "@/entities/apps/mutations";
 import { useInfoStore } from "@/features/edit-app/stores/info";
-import { useOptionsStore } from "@/features/edit-app/stores/options";
-import { useServerStore } from "@/features/edit-app/stores/server";
 import { useGetAppDetail } from "@/features/get-app-detail/hooks/useGetAppDetail";
 import { TOSAT_CONFIG } from "@/shared/constants/toast-config";
 import { useToast } from "@b1nd/dodam-design-system";
@@ -9,16 +7,13 @@ import { useToast } from "@b1nd/dodam-design-system";
 export const useSubmit = (finishEdit: () => void) => {
   const app = useGetAppDetail();
   const { info } = useInfoStore();
-  const { server } = useServerStore();
-  const { options } = useOptionsStore();
   const toast = useToast();
 
   const validate = () => {
     if (
-      server.useServer &&
-      (!server.name.trim() ||
-        !server.redirectPath.trim() ||
-        !server.serverAddress.trim())
+      !info.subtitle.trim() ||
+      !info.description.trim() ||
+      !info.inquiryMail.trim()
     ) {
       return false;
     }
@@ -37,20 +32,6 @@ export const useSubmit = (finishEdit: () => void) => {
     );
   };
 
-  const hasChangedServer = () => {
-    if (!app.server && !server.useServer) return false;
-    if (!app.server && server.useServer) return true;
-    if (app.server && !server.useServer) return true;
-
-    return (
-      app.server!.name !== server.name ||
-      app.server!.serverAddress !== server.serverAddress ||
-      app.server!.redirectPath !== server.redirectPath ||
-      app.server!.omitApiPrefix !== options.omitApiPrefix ||
-      app.server!.usePushNotification !== options.usePushNotification
-    );
-  };
-
   const submit = async () => {
     const isValidated = validate();
 
@@ -59,7 +40,7 @@ export const useSubmit = (finishEdit: () => void) => {
       return;
     }
 
-    if (!hasChangedInfo() && !hasChangedServer()) {
+    if (!hasChangedInfo()) {
       finishEdit();
       return;
     }
@@ -72,15 +53,6 @@ export const useSubmit = (finishEdit: () => void) => {
       iconUrl: info.iconUrl,
       darkIconUrl: info.darkIconUrl,
       inquiryMail: info.inquiryMail,
-      server: server.useServer
-        ? {
-            name: server.name,
-            serverAddress: server.serverAddress,
-            redirectPath: server.redirectPath,
-            omitApiPrefix: options.omitApiPrefix,
-            usePushNotification: options.usePushNotification,
-          }
-        : undefined,
     });
 
     finishEdit();
