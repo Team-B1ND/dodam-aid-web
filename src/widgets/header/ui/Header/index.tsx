@@ -19,7 +19,9 @@ const Header = () => {
   return (
     <S.Header $isScrolled={isScrolled}>
       <S.Container>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <S.Nav>
           {NAVIGATIONS.map(({ name, href }) => (
             <S.NavItem key={href}>

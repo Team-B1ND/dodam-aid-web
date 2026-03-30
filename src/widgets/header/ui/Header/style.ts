@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 
 export const Header = styled.header<{ $isScrolled: boolean }>`
   width: 100%;
-  max-width: 1200px;
   position: fixed;
   top: 0;
   left: 50%;
@@ -22,6 +21,7 @@ export const Header = styled.header<{ $isScrolled: boolean }>`
 
 export const Container = styled.div`
   width: 100%;
+  max-width: 1200px;
   height: 60px;
   padding: 0 24px;
   display: flex;

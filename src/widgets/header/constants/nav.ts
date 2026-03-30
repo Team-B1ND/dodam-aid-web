@@ -5,6 +5,6 @@ export const NAVIGATIONS = [
   },
   {
     name: "문서",
-    href: "/docs"
+    href: "https://dodam-docs.b1nd.com/aid"
   }
 ]
