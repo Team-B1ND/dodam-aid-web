@@ -2,17 +2,15 @@ import { colors, shapes } from "@b1nd/dodam-design-system";
 import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
-/* ─── Breakpoints ────────────────────────────────────── */
 const bp = {
   lg: "@media (max-width: 1024px)",
   md: "@media (max-width: 768px)",
   sm: "@media (max-width: 480px)",
 } as const;
 
-/* ─── Shared ─────────────────────────────────────────── */
 export const Page = styled.div`
   width: 100%;
-  overflow-x: hidden;
+  clip-path: inset(0);
 `;
 
 export const Inner = styled.div`
@@ -23,24 +21,34 @@ export const Inner = styled.div`
   box-sizing: border-box;
 `;
 
-/* ─── 1. Hero ─────────────────────────────────────────── */
-export const HeroSection = styled.section`
+export const HeroScrollArea = styled.div`
+  height: 150vh;
+  position: relative;
+
+  ${bp.md} { height: auto; }
+`;
+
+export const HeroSticky = styled.section`
+  position: sticky;
+  top: 0;
+  height: 100vh;
   width: 100%;
   background-color: ${colors.background.default};
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding-top: 14vh;
+
+  ${bp.md} { position: relative; height: auto; padding-top: 80px; }
 `;
 
 export const HeroInner = styled(Inner)`
-  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  overflow: hidden;
 
-  ${bp.lg} { height: 640px; }
-  ${bp.md} { height: auto; padding-top: 80px; padding-bottom: 80px; }
+  ${bp.md} { padding-top: 80px; padding-bottom: 80px; }
 `;
 
 export const HeroTitleBlock = styled.div`
@@ -68,38 +76,45 @@ export const HeroLine = styled(motion.p)<{ $blue?: boolean }>`
   ${bp.sm} { font-size: 36px; }
 `;
 
-/* Phone1: left 542px, top 315px (피그마 기준, md 이하에선 숨김) */
-export const Phone1 = styled(motion.div)`
-  position: absolute;
-  left: 542px;
-  top: 315px;
-  width: 426px;
-  height: 378px;
-  display: flex;
+export const DodamSwap = styled.span`
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  pointer-events: none;
+  position: relative;
+  overflow: hidden;
+  vertical-align: baseline;
+  margin-right: 6px;
 
-  ${bp.lg} { left: auto; right: -60px; top: 50%; transform: translateY(-60%) !important; width: 320px; height: 280px; }
-  ${bp.md} { display: none; }
+  .blue {
+    color: ${colors.brand.primary};
+    font: inherit;
+  }
+
+  img {
+    border-radius: 16px;
+  }
 `;
 
-export const Phone2 = styled(motion.div)`
+export const PhoneMockupHero = styled(motion.div)`
   position: absolute;
-  left: 786px;
-  top: 110px;
-  width: 414px;
-  height: 410px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  right: -60px;
+  top: 20px;
+  width: 720px;
   pointer-events: none;
 
-  ${bp.lg} { left: auto; right: 160px; top: 40px; width: 240px; height: 260px; }
-  ${bp.md} { display: none; }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  ${bp.lg} { width: 380px; right: -40px; }
+  ${bp.md} {
+    position: static;
+    width: 100%;
+    margin-top: 32px;
+  }
 `;
 
-/* ─── 2. Blue Section ─────────────────────────────────── */
 export const BlueSection = styled.section`
   width: 100%;
   background-color: ${colors.brand.primary};
@@ -167,7 +182,6 @@ export const BlueSubtitleLine = styled.p`
   ${bp.sm} { font-size: 18px; }
 `;
 
-/* Marquee */
 export const MarqueeWrapper = styled.div`
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -211,7 +225,6 @@ export const ServiceTag = styled.div`
   }
 `;
 
-/* ─── 3. Features Section ─────────────────────────────── */
 export const FeaturesSection = styled.section`
   width: 100%;
   background-color: ${colors.background.default};
@@ -256,20 +269,33 @@ export const FeaturesSectionTitle = styled.div`
 export const FeaturesList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 64px;
+  gap: 120px;
   width: 740px;
 
   ${bp.lg} { width: 100%; max-width: 600px; }
   ${bp.md} { width: 100%; max-width: 100%; gap: 48px; }
 `;
 
-export const FeatureItem = styled(motion.div)`
+export const FeatureItem = styled(motion.div)<{ $reverse?: boolean }>`
   display: flex;
   align-items: center;
   gap: 36px;
+  ${({ $reverse }) => $reverse && "flex-direction: row-reverse; justify-content: flex-end;"}
 
   ${bp.md} { gap: 24px; }
-  ${bp.sm} { flex-direction: column; align-items: flex-start; gap: 20px; }
+  ${bp.sm} { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 20px; }
+`;
+
+export const FeatureDdsImage = styled.img`
+  width: 340px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: ${shapes.large}px;
+  filter: drop-shadow(-10px 10px 12px rgba(0, 0, 0, 0.12));
+
+  ${bp.lg} { width: 220px; }
+  ${bp.md} { width: 200px; }
+  ${bp.sm} { width: 100%; order: 1; }
 `;
 
 export const FeatureImageBox = styled.div`
@@ -322,7 +348,6 @@ export const FeatureDesc = styled.div`
   ${bp.md} { font-size: 16px; }
 `;
 
-/* ─── 4. Growth / CTA Section ─────────────────────────── */
 export const GrowthSection = styled.section`
   width: 100%;
   background-color: ${colors.fill.secondary};
@@ -412,7 +437,6 @@ export const GrowthCardTitle = styled.p`
   ${bp.sm} { font-size: 18px; }
 `;
 
-/* Phone mockup for card 1 */
 export const PhoneMockup = styled.div`
   flex: 1;
   width: 100%;
@@ -425,7 +449,7 @@ export const PhoneMockup = styled.div`
   flex-direction: column;
   gap: 8px;
   overflow: hidden;
-  align-self: flex-end;
+  align-self: center;
 `;
 
 export const MockupNotification = styled.div`
@@ -460,7 +484,6 @@ export const MockupLine = styled.div<{ $width: number }>`
   border-radius: 4px;
 `;
 
-/* Star rating for card 2 */
 export const StarRatingContent = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -491,7 +514,6 @@ export const StarSvg = styled.div<{ $filled?: boolean }>`
   display: flex;
 `;
 
-/* ─── 5. Final CTA ───────────────────────────────────── */
 export const FinalCTASection = styled.section`
   width: 100%;
   background-color: ${colors.background.default};
