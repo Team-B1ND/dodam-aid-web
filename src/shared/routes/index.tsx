@@ -13,6 +13,7 @@ import AppReleasePage from "@/pages/AppRelease";
 import TeamSettings from "@/pages/TeamSettings";
 import TeamMembersPage from "@/pages/TeamMembers";
 import RegisterReleasePage from "@/pages/RegisterRelease";
+import InviteAcceptPage from "@/pages/InviteAccept";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "/docs", element: <></> },
+      { path: "team/invite/:code", element: <InviteAcceptPage /> },
       {
         path: "/*",
         element: <ServiceLayout />,

@@ -13,3 +13,11 @@ export interface UpdateOwnerReq {
   teamId: string;
   userPublicId: string;
 }
+
+export interface CreateInviteReq {
+  teamPublicId: string;
+}
+
+export interface AcceptInviteReq {
+  inviteCode: string;
+}

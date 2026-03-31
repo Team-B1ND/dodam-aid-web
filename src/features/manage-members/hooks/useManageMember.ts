@@ -1,7 +1,6 @@
-import { useDeleteMemberMutation } from "@/entities/teams/mutations";
+import { useCreateInviteMutation, useDeleteMemberMutation } from "@/entities/teams/mutations";
 import { useGetMembers } from "@/features/get-team-detail/hooks/useGetMembers";
 import { useGetTeamDetail } from "@/features/get-team-detail/hooks/useGetTeamDetail";
-import { useToast } from "@b1nd/dodam-design-system";
 import { useState } from "react";
 
 export const useManageMember = () => {
@@ -9,7 +8,7 @@ export const useManageMember = () => {
   const member = useGetMembers();
   const [selected, setSelected] = useState<string[]>([]);
   const { mutateAsync, isPending } = useDeleteMemberMutation();
-  const toast = useToast();
+  const { mutateAsync: createInvite, isPending: isInviting } = useCreateInviteMutation();
 
   const isSelected = (userId: string) => selected.includes(userId);
   const candidates = member.filter((m) => !m.isOwner);
@@ -37,8 +36,7 @@ export const useManageMember = () => {
 
   const handleCopy = async () => {
     if (!team.teamId) return;
-    await navigator.clipboard.writeText(team.teamId);
-    toast.success("팀 초대 링크 복사 완료");
+    await createInvite({ teamPublicId: team.teamId });
   };
 
   return {
