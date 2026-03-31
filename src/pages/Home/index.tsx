@@ -3,6 +3,9 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import DodamLogo from "../../shared/assets/images/AppIcon.png";
+import { useGetMyInfoQuery } from "@/entities/users/queries";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 const imgPhone1 =
   "https://www.figma.com/api/mcp/asset/6a16a281-0205-4a54-bddf-93de1711e5e8";
@@ -293,6 +296,35 @@ const Home = () => {
   );
 };
 
+/* ─── CTA Button (로그인 여부에 따라 분기) ───────────────── */
+const CTAButton = () => {
+  useGetMyInfoQuery();
+  return (
+    <Link to="/teams" style={{ textDecoration: "none" }}>
+      <S.FinalCTAButton>
+        팀 만들기
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </S.FinalCTAButton>
+    </Link>
+  );
+};
+
+const CTAButtonFallback = () => {
+  const handleClick = () => {
+    window.location.href = import.meta.env.VITE_LOGIN_URL!;
+  };
+  return (
+    <S.FinalCTAButton onClick={handleClick}>
+      팀 만들기
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </S.FinalCTAButton>
+  );
+};
+
 /* ─── Final CTA ──────────────────────────────────────── */
 const FinalCTA = () => {
   const ref = useRef(null);
@@ -335,14 +367,11 @@ const FinalCTA = () => {
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
         >
-          <Link to="/teams" style={{ textDecoration: "none" }}>
-            <S.FinalCTAButton>
-              팀 만들기
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </S.FinalCTAButton>
-          </Link>
+          <ErrorBoundary fallback={<CTAButtonFallback />}>
+            <Suspense fallback={<CTAButtonFallback />}>
+              <CTAButton />
+            </Suspense>
+          </ErrorBoundary>
         </motion.div>
       </S.FinalCTAInner>
     </S.FinalCTASection>
