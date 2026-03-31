@@ -1,11 +1,12 @@
 import { motion, useInView, useAnimationFrame, useScroll, useMotionValueEvent } from "framer-motion";
-import { useRef, useState, useEffect, useMemo, memo, Suspense } from "react";
+import { useRef, useState, useEffect, useLayoutEffect, useMemo, memo, Suspense } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./style";
 import DodamLogo from "../../shared/assets/images/AppIcon.png";
 import { useGetMyInfoQuery } from "@/entities/users/queries";
 import { ErrorBoundary } from "react-error-boundary";
 import { useTheme } from "@b1nd/dodam-design-system";
+import Lenis from "lenis";
 
 const imgMockupLight = "/light_mockup.png";
 const imgMockupDark = "/dark_mockup.png";
@@ -155,6 +156,24 @@ const Home = () => {
   const blueRef = useRef(null);
   const featuresRef = useRef(null);
   const growthRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const lenis = new Lenis({
+      duration: 0.9,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+    let rafId: number;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: heroScrollRef,

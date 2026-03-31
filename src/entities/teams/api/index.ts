@@ -1,11 +1,13 @@
 import type { Team } from "@/entities/teams/types";
 import type {
+  AcceptInviteReq,
+  CreateInviteReq,
   CreateTeamReq,
   DeleteMemberReq,
   UpdateOwnerReq,
   UpdateTeamReq,
 } from "@/entities/teams/types/dto/req";
-import type { CreateTeamRes } from "@/entities/teams/types/dto/res";
+import type { CreateInviteRes, CreateTeamRes } from "@/entities/teams/types/dto/res";
 import type { Member } from "@/entities/users/types";
 import { apiClient } from "@/shared/libs/api-client";
 import type { BaseResponse } from "@/shared/types/base-response";
@@ -48,5 +50,19 @@ export const TeamApi = {
 
   async makeOwner(data: UpdateOwnerReq) {
     return await apiClient.patch<BaseResponse<null>>(`/inapp/team/owner`, data);
-  }
+  },
+
+  async createInvite(data: CreateInviteReq) {
+    return await apiClient.post<BaseResponse<CreateInviteRes>>(
+      "/inapp/team/invite",
+      data,
+    );
+  },
+
+  async acceptInvite(data: AcceptInviteReq) {
+    return await apiClient.post<BaseResponse<null>>(
+      "/inapp/team/invite/accept",
+      data,
+    );
+  },
 };
