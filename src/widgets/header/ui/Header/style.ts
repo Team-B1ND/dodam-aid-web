@@ -36,8 +36,13 @@ export const Nav = styled.div`
   gap: 12px;
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled.div<{ $mobileHidden?: boolean }>`
   padding: 12px 20px;
   ${typoCss("Body2", "Bold")};
   color: ${colors.text.tertiary};
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    ${({ $mobileHidden }) => $mobileHidden && "display: none;"}
+  }
 `;

@@ -23,8 +23,8 @@ const Header = () => {
           <Logo />
         </Link>
         <S.Nav>
-          {NAVIGATIONS.map(({ name, href }) => (
-            <S.NavItem key={href}>
+          {NAVIGATIONS.map(({ name, href, mobileHidden }) => (
+            <S.NavItem key={href} $mobileHidden={mobileHidden}>
               <Link to={href}>{name}</Link>
             </S.NavItem>
           ))}
