@@ -8,7 +8,7 @@ export const useManageMember = () => {
   const member = useGetMembers();
   const [selected, setSelected] = useState<string[]>([]);
   const { mutateAsync, isPending } = useDeleteMemberMutation();
-  const { mutateAsync: createInvite, isPending: isInviting } = useCreateInviteMutation();
+  const { mutateAsync: createInvite } = useCreateInviteMutation();
 
   const isSelected = (userId: string) => selected.includes(userId);
   const candidates = member.filter((m) => !m.isOwner);
