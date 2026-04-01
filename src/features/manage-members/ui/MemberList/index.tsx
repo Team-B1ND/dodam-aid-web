@@ -87,14 +87,16 @@ const MemberList = () => {
       <S.List>
         <S.ListHeader>
           <S.CheckboxWrapper>
-            <Checkbox
-              selected={
-                selected.length === candidates.length && selected.length > 0
-              }
-              disabled={selected.length <= 0}
-              onClick={handleAll}
-              size="small"
-            />
+            {team.isOwner && (
+              <Checkbox
+                selected={
+                  selected.length === candidates.length && selected.length > 0
+                }
+                disabled={selected.length <= 0}
+                onClick={handleAll}
+                size="small"
+              />
+            )}
           </S.CheckboxWrapper>
           <S.ListTitle>팀원 목록</S.ListTitle>
         </S.ListHeader>
@@ -105,6 +107,7 @@ const MemberList = () => {
               key={member.userId}
               onClick={() => handleSelect(member.userId)}
               isSelected={isSelected(member.userId)}
+              teamIsOwner={team.isOwner}
             />
           ))
         ) : (
