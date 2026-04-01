@@ -86,8 +86,8 @@ const MemberList = () => {
       </Row>
       <S.List>
         <S.ListHeader>
-          <S.CheckboxWrapper>
-            {team.isOwner && (
+          {team.isOwner && (
+            <S.CheckboxWrapper>
               <Checkbox
                 selected={
                   selected.length === candidates.length && selected.length > 0
@@ -96,8 +96,8 @@ const MemberList = () => {
                 onClick={handleAll}
                 size="small"
               />
-            )}
-          </S.CheckboxWrapper>
+            </S.CheckboxWrapper>
+          )}
           <S.ListTitle>팀원 목록</S.ListTitle>
         </S.ListHeader>
         {filtered.length ? (

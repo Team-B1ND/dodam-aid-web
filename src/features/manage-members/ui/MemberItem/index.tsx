@@ -13,11 +13,13 @@ interface Props {
 const MemberItem = ({ data, onClick, isSelected, teamIsOwner }: Props) => {
   return (
     <S.Container>
-      <S.CheckboxWrapper>
-        {teamIsOwner && !data.isOwner && (
-          <Checkbox selected={isSelected} onClick={onClick} size="small" />
-        )}
-      </S.CheckboxWrapper>
+      {teamIsOwner && (
+        <S.CheckboxWrapper>
+          {!data.isOwner && (
+            <Checkbox selected={isSelected} onClick={onClick} size="small" />
+          )}
+        </S.CheckboxWrapper>
+      )}
       {data.profileIamge ? (
         <S.ProfileImage src={data.profileIamge} />
       ) : (
