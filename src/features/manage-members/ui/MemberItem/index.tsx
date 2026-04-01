@@ -7,13 +7,14 @@ interface Props {
   data: Member;
   onClick: () => void;
   isSelected: boolean;
+  teamIsOwner: boolean;
 }
 
-const MemberItem = ({ data, onClick, isSelected }: Props) => {
+const MemberItem = ({ data, onClick, isSelected, teamIsOwner }: Props) => {
   return (
     <S.Container>
       <S.CheckboxWrapper>
-        {!data.isOwner && (
+        {teamIsOwner && !data.isOwner && (
           <Checkbox selected={isSelected} onClick={onClick} size="small" />
         )}
       </S.CheckboxWrapper>
