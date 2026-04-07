@@ -14,7 +14,7 @@ export const useUploads = () => {
       formData.append("file", file);
 
       const { data } = await axios.post<{ url: string }>(
-        "https://cloud.cher1shrxd.me/files/upload",
+        `${import.meta.env.VITE_API_URL}/file/upload`,
         formData,
       );
 
