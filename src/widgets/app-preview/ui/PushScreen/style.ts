@@ -52,6 +52,13 @@ export const Logo = styled.img`
   background-color: ${colors.brand.secondary};
 `;
 
+export const MiniAppLogo = styled.img`
+  width: 24px;
+  height: 24px;
+  border-radius: ${shapes.small};
+  background-color: ${colors.brand.secondary};
+`;
+
 export const AppName = styled.p`
   font-size: 10px;
   font-weight: 500;
