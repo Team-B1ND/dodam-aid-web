@@ -1,6 +1,7 @@
 import { useDateTime } from "@/widgets/app-preview/hooks/useDateTime";
 import { Column, Row, Spacer } from "@/shared/styles/common";
 import { useTheme } from "@b1nd/dodam-design-system";
+import AppLogo from "@/shared/assets/images/AppIcon.png";
 import * as S from "./style";
 
 interface Props {
@@ -46,7 +47,7 @@ const PushScreen = ({
           <S.Notification>
             <Row $align="center" $gap={8}>
               <S.Logo
-                src={theme === "dark" && darkIconUrl ? darkIconUrl : iconUrl}
+                src={AppLogo}
               />
               <Spacer>
                 <Column>
@@ -59,6 +60,9 @@ const PushScreen = ({
                   <S.NotificationText>{subtitle}</S.NotificationText>
                 </Column>
               </Spacer>
+              <S.MiniAppLogo
+                src={theme === "dark" && darkIconUrl ? darkIconUrl : iconUrl}
+              />
             </Row>
           </S.Notification>
         </a>
