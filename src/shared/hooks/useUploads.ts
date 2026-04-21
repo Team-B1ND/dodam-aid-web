@@ -16,6 +16,7 @@ export const useUploads = () => {
       const { data } = await axios.post<{ url: string }>(
         `${import.meta.env.VITE_API_URL}/file/upload`,
         formData,
+        { withCredentials: true }
       );
 
       return data.url;
