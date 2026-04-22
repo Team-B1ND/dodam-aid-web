@@ -20,7 +20,7 @@ export const useUploads = () => {
         { withCredentials: true }
       );
 
-      return data.url;
+      return data.data.url;
     } catch (err) {
       const error = err as ErrorResponse;
       toast.error(
