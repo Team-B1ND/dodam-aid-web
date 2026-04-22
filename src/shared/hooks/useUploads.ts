@@ -2,6 +2,7 @@ import type { ErrorResponse } from "@/shared/types/error-response";
 import { useToast } from "@b1nd/dodam-design-system";
 import axios from "axios";
 import { useState } from "react";
+import type { BaseResponse } from "../types/base-response";
 
 export const useUploads = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,13 +14,13 @@ export const useUploads = () => {
       const formData = new FormData();
       formData.append("file", file);
 
-      const { data } = await axios.post<{ url: string }>(
+      const { data } = await axios.post<BaseResponse<{ url: string }>>(
         `${import.meta.env.VITE_API_URL}/file/upload`,
         formData,
         { withCredentials: true }
       );
 
-      return data.url;
+      return data.data.url;
     } catch (err) {
       const error = err as ErrorResponse;
       toast.error(
