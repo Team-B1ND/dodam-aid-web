@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import SEO from "@/shared/ui/SEO";
 import * as S from "./style";
 
 const InviteHandler = () => {
@@ -44,7 +45,9 @@ const LoginFallback = () => {
 
 const InviteAcceptPage = () => {
   return (
-    <ErrorBoundary fallback={<LoginFallback />}>
+    <>
+      <SEO title="팀 초대 수락" noIndex />
+      <ErrorBoundary fallback={<LoginFallback />}>
       <Suspense
         fallback={
           <S.Container>
@@ -55,6 +58,7 @@ const InviteAcceptPage = () => {
         <InviteHandler />
       </Suspense>
     </ErrorBoundary>
+    </>
   );
 };
 

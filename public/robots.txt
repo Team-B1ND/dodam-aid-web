@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# 인증 필요 경로 크롤링 차단
+Disallow: /teams/
+Disallow: /team/invite/
+
+Sitemap: https://aid.dodam.b1nd.com/sitemap.xml

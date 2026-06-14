@@ -1,6 +1,7 @@
 import { motion, useInView, useAnimationFrame, useScroll, useMotionValueEvent } from "framer-motion";
 import { useRef, useState, useEffect, useLayoutEffect, useMemo, memo, Suspense } from "react";
 import { Link } from "react-router-dom";
+import SEO from "@/shared/ui/SEO";
 import * as S from "./style";
 import DodamLogo from "../../shared/assets/images/AppIcon.png";
 import { useGetMyInfoQuery } from "@/entities/users/queries";
@@ -190,6 +191,7 @@ const Home = () => {
 
   return (
     <S.Page>
+      <SEO />
       <S.HeroScrollArea ref={heroScrollRef}>
         <S.HeroSticky>
           <S.HeroInner>
