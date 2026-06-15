@@ -25,6 +25,7 @@ const SEO = ({
 
   return (
     <Helmet>
+      <meta name="google-site-verification" content="TgMWfqEB3ftzN4lZ7dO2_RbS--HXsMiP2WS609fcu1k" />
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {noIndex && <meta name="robots" content="noindex, nofollow" />}
