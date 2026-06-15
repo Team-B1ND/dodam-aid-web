@@ -8,7 +8,7 @@ interface SEOProps {
   noIndex?: boolean;
 }
 
-const BASE_URL = "https://aid.dodam.b1nd.com";
+const BASE_URL = "https://aid.b1nd.com";
 const DEFAULT_IMAGE = `${BASE_URL}/light_mockup.png`;
 const SITE_NAME = "APPS IN 도담도담";
 const DEFAULT_DESC =
