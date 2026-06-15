@@ -5,4 +5,4 @@ Allow: /
 Disallow: /teams/
 Disallow: /team/invite/
 
-Sitemap: https://aid.dodam.b1nd.com/sitemap.xml
+Sitemap: https://aid.b1nd.com/sitemap.xml
