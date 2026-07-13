@@ -10,11 +10,7 @@ export const useSubmit = (finishEdit: () => void) => {
   const toast = useToast();
 
   const validate = () => {
-    if (
-      !info.subtitle.trim() ||
-      !info.description.trim() ||
-      !info.inquiryMail.trim()
-    ) {
+    if (!info.subtitle.trim()) {
       return false;
     }
     return true;
