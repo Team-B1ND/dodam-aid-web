@@ -17,5 +17,6 @@ export const useDeleteApp = () => {
   return {
     deleteSubmit,
     isPending,
+    appName: app.name,
   };
 };
